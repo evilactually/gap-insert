@@ -1,0 +1,30 @@
+<div class="post">  
+    <table width=100%>
+      <tr>
+        <td> /* </td> <td> Title: <a href="{{ post.url }}">{{ post.title }}</a> </td> <td>&nbsp;*</td>
+      </tr>
+      <tr>
+        <td>&nbsp;*</td>
+        <td>
+          <info datetime="{{ page.date * date: "%Y-%m-%d" }}">
+            Date: {{ post.date * date: "%b %d, %Y" }}
+          </info>
+        </td>
+        <td>&nbsp;*</td>
+      </tr>
+      <tr>
+        <td>&nbsp;*</td>
+        <td> Category: {{ post.category }}</td>
+        <td>&nbsp;*</td>
+      </tr>
+      <tr>
+        <td>&nbsp;*</td>
+        <td> Tags: {{ post.tags }}</td>
+        <td>&nbsp;*/ </td>
+      </tr>
+    </table>
+  <div class="body">{{ post.content }}</div>
+  <div class="breaker"></div>
+  <info class="empty after">
+  </info>
+</div>

@@ -1,2 +1,10 @@
-Echolot's site
-
+---
+layout: default
+---
+<div class="posts">
+  {% for post in site.posts %}
+      <div class="content">
+      {% include listed-post.html %}
+      </div>
+  {% endfor %}
+</div>

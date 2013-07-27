@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen, projection" href="/res/style.css" type="text/css">
+    <link rel="stylesheet" href="/res/pretify-sunburst.css" type="text/css">
+    <title>{% if page.title %} {{ page.title }} &mdash; {% endif %} Echolot </title>
+  </head>
+  <body>
+    <span class="navigation"> Log | Downloads | Git | Contact </span>
+    </br></br>
+    {{ content }}
+  </body>
+  {% include prettify.html %}
+ </html>

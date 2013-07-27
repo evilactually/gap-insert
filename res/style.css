@@ -1,0 +1,42 @@
+html { 
+  /*font-size : 125%;*/
+  background-color: #131313;
+} 
+
+body {
+  color: white;
+  background-color: transparent;
+  font-size: 12px;
+  padding: 0;
+  margin: 20px;
+  width: 640px;  
+  font: 15px/1.4em 'Courier New', Courier, monospace
+}
+
+p, ul, ol, pre, blockquote, hr, object { margin: 1em 0; }
+
+blockquote p { font-style: italic !important; color: gray;}
+
+* { font: 15px/1.4em 'Courier New', Courier, monospace; }
+
+strong em {
+  font-weight: bold;
+}
+
+a { color: rgb(0, 133, 255); text-decoration:none; }
+a:link:hover, a:active:hover, a:visited:hover { text-decoration:underline; }
+a.img { border:none; background:transparent !important; }
+
+.navigation {
+  margin-left:5px;
+}
+
+img {
+  border:none; 
+  vertical-align:bottom;
+  display: block;
+  margin: 50px 0;
+  max-width: 640px;
+  height: auto;
+}
+
