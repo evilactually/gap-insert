@@ -1,6 +1,6 @@
 html { 
   /*font-size : 125%;*/
-  background-color: #131313;
+  background-color: #191919;
 } 
 
 body {
@@ -9,7 +9,7 @@ body {
   font-size: 12px;
   padding: 0;
   margin: 20px;
-  width: 640px;  
+  width: 100%;  
   font: 15px/1.4em 'Courier New', Courier, monospace
 }
 
@@ -17,9 +17,7 @@ p, ul, ol, pre, blockquote, hr, object { margin: 1em 0; }
 
 blockquote p { font-style: italic !important; color: gray;}
 
-* { font: 15px/1.4em 'Courier New', Courier, monospace; }
-
-strong em {
+em {
   font-weight: bold;
 }
 
@@ -29,6 +27,25 @@ a.img { border:none; background:transparent !important; }
 
 .navigation {
   margin-left:5px;
+  float:bottom;
+}
+a.title {
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.date {
+  color: gray;
+}
+
+.site-content {
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  float: center;
+  background-color: #131313;
+  padding:10px;
+  border-radius:5px;
 }
 
 img {

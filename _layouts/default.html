@@ -7,9 +7,15 @@
     <title>{% if page.title %} {{ page.title }} &mdash; {% endif %} Echolot </title>
   </head>
   <body>
-    <span class="navigation"> Log | Downloads | Git | Contact </span>
-    </br></br>
-    {{ content }}
+    <div class="site-content">
+      <!-- <div style="margin-left:10px; margin-right:10px;"> -->
+        <!-- <div style="margin-top:10px;float:bottom;position:relative;padding:10px"> -->
+          <span class="navigation"> Log | Downloads | Git | Contact </span>
+        <!-- </div> -->
+        </br></br>
+        {{ content }}
+      <!-- </div> -->
+    </div>
   </body>
   {% include prettify.html %}
  </html>

@@ -1,14 +1,17 @@
 <div class="post">  
-    <table width=100%>
+  <a class="title" href="{{ post.url }}">{{ post.title }}</a>
+  <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
+    Date: {{ post.date | date: "%b %d, %Y" }}
+  </info>
+
+    <!-- <table width=100%>
       <tr>
-        <td> /* </td> <td> Title: <a href="{{ post.url }}">{{ post.title }}</a> </td> <td>&nbsp;*</td>
+        <td> /* </td> <td> Title:  </td> <td>&nbsp;*</td>
       </tr>
       <tr>
         <td>&nbsp;*</td>
         <td>
-          <info datetime="{{ page.date * date: "%Y-%m-%d" }}">
-            Date: {{ post.date * date: "%b %d, %Y" }}
-          </info>
+          
         </td>
         <td>&nbsp;*</td>
       </tr>
@@ -22,11 +25,10 @@
         <td> Tags: {{ post.tags }}</td>
         <td>&nbsp;*/ </td>
       </tr>
-    </table>
+    </table> -->
   <div class="body">{{ post.content }}</div>
   <div class="breaker"></div>
   <info class="empty after">
   </info>
-  ---------------------------------------------------------------------
-  </br></br>
+  
 </div>
