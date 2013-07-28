@@ -39,20 +39,21 @@ a.img { border:none; background:transparent !important; }
 
 .navigation a { color:white; text-decoration:none; }
 .navigation a:link:hover { color:white; text-decoration:none;}
-.navigation a:link:hover:before { content: "✜ ";}
+/*.navigation a:link:hover:before { content: "✜ ";}*/
 
-
-.title a {
+.post-title {
   font-size: 28px;
+  color: rgb(0, 133, 255);
+  vertical-align:top;
 }
 
-.title {
+.post-header {
   margin-top: 15px;
 }
 
 .date {
   color: gray;
-  padding-left: 35px;
+  /*padding-left: 35px;*/
 }
 
 .post{

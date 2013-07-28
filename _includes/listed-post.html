@@ -1,11 +1,26 @@
 <div class="post">  
-  <div class="title">
-    <a href="{{ post.url }}">✜ {{ post.title }}</a>
-    <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
-      Date: {{ post.date | date: "%b %d, %Y" }}
-    </info>
+  <div class="post-header">
+    <table>
+      <tr>
+        <td style="vertical-align:top;width:28px;"><span class="post-title" style="padding-left:3px"> ✜ </span></td>
+        <td> 
+          <a href="{{ post.url }}" class="post-title"> {{ post.title }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td>
+          <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
+            Date: {{ post.date | date: "%b %d, %Y" }}
+          </info>
+        </td>
+      </tr>
+    </table>
   </div>
-  <div class="body">{{ post.content }}</div>
+  {{ post.content | truncate:"512" }}
+  <div style="margin-top:10px;text-align:right">
+    <a href="{{ post.url }}" style="margin-right:10px;"> Read More ➞ </a>
+  </div>
   <div class="breaker"></div>
   <info class="empty after">
   </info>

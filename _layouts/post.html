@@ -1,10 +1,28 @@
 ---
 layout: master
 ---
-<div class="content">
-  <div class="post single">
-
-    <div class="post">{{ content }}</div>
-    <div class="breaker"></div>
+<div class="post">   
+ <div class="post-header">
+    <table>
+      <tr>
+        <td style="vertical-align:top;width:28px;"><span class="post-title" style="padding-left:3px"> ✜ </span></td>
+        <td> 
+          <span class="post-title"> {{ page.title }}</span>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td>
+          <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
+            Date: {{ page.date | date: "%b %d, %Y" }}
+          </info>
+        </td>
+      </tr>
+    </table>
   </div>
+  {{ content }}
+  <div class="breaker"></div>
+  <info class="empty after">
+  </info>
 </div>
+
