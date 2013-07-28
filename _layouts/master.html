@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen, projection" href="/res/style.css" type="text/css">
+    <link rel="stylesheet" href="/res/pretify-sunburst.css" type="text/css">
+    <title>{% if page.title %} {{ page.title }} &mdash; {% endif %} Echolot-1 </title>
+  </head>
+  <body>
+    <div class="navigation">
+      <a href="http://echolot-1.github.io">Log</a> | 
+      <a href="mailto:vlad.shcherbakov@gmail.com">Archive </a> |
+      <a href="echolot-1.github.io/downloads.html"> Downloads </a> | 
+      <a href="echolot-1.github.com"> Git </a>
+    </div>
+    {{ content }}
+  </body>
+  {% include prettify.html %}
+ </html>

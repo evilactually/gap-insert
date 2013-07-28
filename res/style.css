@@ -26,34 +26,52 @@ a:link:hover, a:active:hover, a:visited:hover { text-decoration:underline; }
 a.img { border:none; background:transparent !important; }
 
 .navigation {
-  margin-left:5px;
-  float:bottom;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 780px;
+  float: center;
+  background-color: #131313;
+  border-radius: 5px;
+  padding:10px;
+  text-align: right;
 }
-a.title {
+
+.navigation a { color:white; text-decoration:none; }
+.navigation a:link:hover { color:white; text-decoration:none;}
+.navigation a:link:hover:before { content: "✜ ";}
+
+
+.title a {
   font-size: 28px;
-  margin-top: 10px;
+}
+
+.title {
+  margin-top: 15px;
 }
 
 .date {
   color: gray;
+  padding-left: 35px;
 }
 
-.site-content {
-  width: 640px;
+.post{
+  width: 780px;
   margin-left: auto;
   margin-right: auto;
   float: center;
   background-color: #131313;
   padding:10px;
   border-radius:5px;
+  margin-bottom: 50px;
 }
 
 img {
-  border:none; 
-  vertical-align:bottom;
-  display: block;
-  margin: 50px 0;
-  max-width: 640px;
-  height: auto;
+  border : none; 
+  vertical-align : bottom;
+  display : block;
+  margin : 50px 0;
+  max-width : 780px;
+  height : auto;
 }
 

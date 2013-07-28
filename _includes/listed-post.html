@@ -1,31 +1,10 @@
 <div class="post">  
-  <a class="title" href="{{ post.url }}">{{ post.title }}</a>
-  <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
-    Date: {{ post.date | date: "%b %d, %Y" }}
-  </info>
-
-    <!-- <table width=100%>
-      <tr>
-        <td> /* </td> <td> Title:  </td> <td>&nbsp;*</td>
-      </tr>
-      <tr>
-        <td>&nbsp;*</td>
-        <td>
-          
-        </td>
-        <td>&nbsp;*</td>
-      </tr>
-      <tr>
-        <td>&nbsp;*</td>
-        <td> Category: {{ post.category }}</td>
-        <td>&nbsp;*</td>
-      </tr>
-      <tr>
-        <td>&nbsp;*</td>
-        <td> Tags: {{ post.tags }}</td>
-        <td>&nbsp;*/ </td>
-      </tr>
-    </table> -->
+  <div class="title">
+    <a href="{{ post.url }}">✜ {{ post.title }}</a>
+    <info class="date" style="display:block;" datetime="{{ page.date * date: "%Y-%m-%d" }}">
+      Date: {{ post.date | date: "%b %d, %Y" }}
+    </info>
+  </div>
   <div class="body">{{ post.content }}</div>
   <div class="breaker"></div>
   <info class="empty after">
