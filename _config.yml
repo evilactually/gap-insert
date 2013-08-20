@@ -1,6 +1,6 @@
-url: "http://127.0.0.1:4000"
-# url:http://echolot-1.github.io/
-paginate: 2
+#url: "http://127.0.0.1:4000"
+url:http://echolot-1.github.io/
+paginate: 5
 auto: true
 server: true
 server_port: 3000
