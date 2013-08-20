@@ -1,4 +1,4 @@
-url:"http://echolot-1.github.io"
+url: "http://echolot-1.github.io"
 paginate: 5
 auto: true
 server: true
