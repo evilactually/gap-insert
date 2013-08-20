@@ -68,10 +68,12 @@ a.img { border:none; background:transparent !important; }
 }
 
 img {
+  float: left; 
+  padding: 5px 5px 0px 5px;
   border : none; 
   vertical-align : bottom;
-  display : block;
-  margin : 50px 0;
+  display : inline;
+  /*margin : 50px 0;*/
   max-width : 780px;
   height : auto;
 }

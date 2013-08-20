@@ -3,7 +3,7 @@ title: "Envar - A better way to manage evironment variables on windows"
 description: ""
 layout: post
 tags: programming scheme
-category: project
+mymeta: "NOW THAT IS AWESOME"
 ---
 
 ### What Is It?
@@ -59,9 +59,11 @@ Other targets:
 
 ### Binary Distribution
 
-Latest portable binary can be downloaded from:
+[https://dl.dropboxusercontent.com/u/23611520/envar-1.0.tar.gz](https://dl.dropboxusercontent.com/u/23611520/envar-1.0.tar.gz)
 
-    https://dl.dropboxusercontent.com/u/23611520/envar-1.0.tar.gz
+### Source Code
+
+[https://github.com/echolot-1/envar](https://github.com/echolot-1/envar)
 
 ### Usage
 
