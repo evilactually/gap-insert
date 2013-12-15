@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen, projection" href="/res/style.css" type="text/css">
+    <link rel="stylesheet" href="/res/pretify-sunburst.css" type="text/css">
+    <title> Making sense of water pouring problems &mdash;  Echolot-1 </title>
+  </head>
+  <body>
+    <div class="navigation">
+      <a href="http://127.0.0.1:4000">Log</a> | 
+      <a href="http://127.0.0.1:4000/blog/archive.html">Archive </a> |
+      <a href="http://127.0.0.1:4000/downloads/"> Downloads </a> | 
+      <a href="http://github.com/echolot-1"> Git </a>
+    </div>
+    <div class="post">   
+ <div class="post-header">
+    <table>
+      <tr>
+        <td style="vertical-align:top;width:28px;"><span class="post-title" style="padding-left:3px"> ✜ </span></td>
+        <td> 
+          <span class="post-title"> Making sense of water pouring problems</span>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td>
+          <info class="date" style="display:block;" datetime="2013-08-19 00:00:00 -0600">
+            Date: Aug 19, 2013
+          </info>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p><img src="/res/vaderwaterpouring_sqr.jpg" alt="" /></p>
+
+<p>There’s a class of puzzle problems known as water pouring problems. They are often posed as word problems involving <em>your favorite cartoon character here</em>, who is tasked to measure out a certain amount of liquid, usually his favorite drink, with scientific accuracy using a limited number of unmarked vessels of known capacities. Such problems are supposed to be hard and they are hard if done wrong even for a computer. I’ve seen some algorithms that can solve these problems pretty quickly, but those algorithms are hard for a human to perform on a piece of paper, from what i gathered it would involve drawing grids in multiple dimensions, and that doesn’t sound too practical. However i found a way to solve those puzzles by hand on paper using pretty basic arithmetic and it doesn’t take that much time or mental effort, but it may take some intuition. Unfortunately
+it&rsquo;s not a kind of algorithm a computer would be able to follow, so far I failed to find a consistent set of actions that works for every case. This
+is for human consumption only, so don&rsquo;t try to entice your nearest friendly computer to do it or it might die of infinite recursion. I don&rsquo;t know if
+it would actually have any application in the real world, but maybe if there was a neat algorithm available it would become more like the kind of computation you&rsquo;d do on a piece of paper to measure out a liter of paint for your home renovation project.</p>
+
+<p>Here&rsquo;s example of one such problem. You have a full 12 liter container of some liquid and two other empty containers of 8 liter and 5 liter capacities.How to measure out exactly 6 liters of paint out of 12 liters and store it in the 8 liter container?</p>
+
+<p>Is that even possible? It may not be always possible. If you want to measure out 6 liters out 12, you need a place to store these 6 liters and you need to find place for the other 6 liters as well. If we were less lucky and the desired amount didn&rsquo;t fit into any of the containers we would have to split it up among different containers, for instance 3 and 3, or 2 and 4, as long as it still cleanly adds up into 6 for all intends and purposes we can consider problem solved. Second problem might arise, even if we figured out how we want the liquid to be sorted into containers it may not always be possible to arrive to that state by any exchange of liquid between containers. Fortunately it is very easy to spot when a state is impossible to reach and i will show you some rules to help you tell apart good states from bad ones.</p>
+
+<p>What are those states? The simplest of states is <em>empty state</em> where all containers are empty. For instance 0/12, 0/8, 0/5 is an empty state for container set of 12, 8 and 5 liters.</p>
+
+<p>We begin defining our problem with <em>initial state</em>. Initial state in our problem above is 12/12, 0/8, 0/5. A very important characteristic of initial state is that all containers must be either full or empty, but never partially filled. This property allows initial state to be easily reproducible and more importantly it becomes guaranteed to be reversible into a <em>empty state</em>. As you will see this guaranteed convergence into empty state is what makes solving such problems in reverse much easier than going forward.</p>
+
+<p>A <em>desired state</em> is what we want to achieve. For each problem there may be many states that are potentially desired, but it is sufficient that we just choose one. For a state to be considered <em>desired</em> it needs to contain the specific amount of liquid that we need either all in a single container or as a sum of liquid from multiple containers. A <em>desired state</em> must be reachable, more on this later.</p>
+
+<p> <em>desired state</em>, <em>initial state</em> and <em>unreachable state</em>.</p>
+
+<p>Initial state in our problem is this:</p>
+
+<p>12/12
+0/6</p>
+
+  <div class="breaker"></div>
+  <info class="empty after">
+  </info>
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'echolot-1'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</div>
+
+
+  </body>
+  <script>
+  // curry pre < code to be able to get prettified
+  // If the first line is
+  //   #!-langname\n
+  // Then that line is removed from the code and "langname" is given to prettify.
+  // If "langname" is "none", that prettify is not applied at all.
+  var n,i,L,cn,lang,v = document.getElementsByTagName('pre');
+  var m,lang_re = /^#\!-([a-zA-Z0-9_-]+)\n/;
+  for (i=0,L=v.length;i<L;++i) {
+    n = v.item(i);
+    if ((cn = n.firstChild) && cn.nodeName == 'CODE') {
+      lang = null;
+      if (cn.firstChild.nodeType === Node.TEXT_NODE) {
+        m = lang_re.exec(cn.firstChild.nodeValue);
+        if (m) {
+          lang = m[1].toLowerCase();
+          cn.firstChild.nodeValue = cn.firstChild.nodeValue.substr(m[0].length);
+          if (lang === 'none') {
+            continue;
+          }
+        }
+      }
+      n.setAttribute('class', 'prettyprint'+(lang ? ' lang-' + lang : ''));
+    }
+  }
+</script>
+<script async src="/res/prettify.js"></script>
+
+ </html>

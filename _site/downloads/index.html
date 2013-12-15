@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen, projection" href="/res/style.css" type="text/css">
+    <link rel="stylesheet" href="/res/pretify-sunburst.css" type="text/css">
+    <title> Echolot-1 </title>
+  </head>
+  <body>
+    <div class="navigation">
+      <a href="http://127.0.0.1:4000">Log</a> | 
+      <a href="http://127.0.0.1:4000/blog/archive.html">Archive </a> |
+      <a href="http://127.0.0.1:4000/downloads/"> Downloads </a> | 
+      <a href="http://github.com/echolot-1"> Git </a>
+    </div>
+    <div class="posts">
+  
+    <div class="content">
+    <div class="post">  
+  <div class="post-header">
+    <table>
+      <tr>
+        <td style="vertical-align:top;width:28px;"><span class="post-title" style="padding-left:3px"> ✜ </span></td>
+        <td> 
+          <a href="/2012/10/08/envar-download.html" class="post-title"> Test download entry</a>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+        <td>
+          <info class="date" style="display:block;" datetime="">
+            Date: Oct 08, 2012
+          </info>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <p> my image goes here</p>
+
+<p>Here&rsquo;s a link</p>
+
+  <div style="margin-top:10px;text-align:right">
+    <a href="/2012/10/08/envar-download.html" style="margin-right:10px;"> Read More ➞ </a>
+  </div>
+  <div class="breaker"></div>
+  <info class="empty after">
+  </info>
+  
+</div>
+    </div>
+  
+</div>
+  </body>
+  <script>
+  // curry pre < code to be able to get prettified
+  // If the first line is
+  //   #!-langname\n
+  // Then that line is removed from the code and "langname" is given to prettify.
+  // If "langname" is "none", that prettify is not applied at all.
+  var n,i,L,cn,lang,v = document.getElementsByTagName('pre');
+  var m,lang_re = /^#\!-([a-zA-Z0-9_-]+)\n/;
+  for (i=0,L=v.length;i<L;++i) {
+    n = v.item(i);
+    if ((cn = n.firstChild) && cn.nodeName == 'CODE') {
+      lang = null;
+      if (cn.firstChild.nodeType === Node.TEXT_NODE) {
+        m = lang_re.exec(cn.firstChild.nodeValue);
+        if (m) {
+          lang = m[1].toLowerCase();
+          cn.firstChild.nodeValue = cn.firstChild.nodeValue.substr(m[0].length);
+          if (lang === 'none') {
+            continue;
+          }
+        }
+      }
+      n.setAttribute('class', 'prettyprint'+(lang ? ' lang-' + lang : ''));
+    }
+  }
+</script>
+<script async src="/res/prettify.js"></script>
+
+ </html>

@@ -1,4 +1,5 @@
-url: "http://echolot-1.github.io"
+#url: "http://echolot-1.github.io"
+url: "http://127.0.0.1:4000"
 paginate: 5
 auto: true
 server: true
