@@ -1,0 +1,83 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Probability Distribution For Skip Lists
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" 
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">
+        Probability Distribution For Skip Lists
+      </h1>
+      <p id="author"> Vlad Sarella </p>
+      <p class="abstract">
+        Many sources describing skip lists implementations take an algorithmic approach to select a random level in a skip list with correct distribution, where a random generator is ran in a loop or some obscure bit arithmetics is employed. A simpler purely mathematical approach exists, however it's not generally known or understood. In this short article it will be explained and demonstrated.  
+      </p>
+      <!-- <h2>1. Problem Statement</h2> -->
+      <div class="content-double">
+        <p>
+        <p class="statement">A level \(N\) in a skip list has a probability of occurrence \(1 \over 2^N\)</p>
+         
+        <p class="no-ident-p">
+          Interestingly, this is the same probability distribution that a coin will fall on the same side \(N\) times in a row. Psedo-random number generators, available in most programming environments, have a uniform probability distribution on \( \left[ 0,1 \right) \) or some \( \left[ 0,Maximum \right) \) range. This uniform probability distribution can be used to simulate any other distribution by mapping it with a function.
+        </p>
+        <p>
+          The function we will construct will not be a programming function, as in a sequence of steps to perform on data, but a relation. Then we will proceed to discover a computation that represents this relation and can be used in a program.
+        </p>
+        <p>
+          A <i>function</i> is a mapping between a <i>domain</i> and <i>co-domain</i>.
+          A domain in our case is some real number on \( \left[ 0,1 \right) \) range. A co-domain are positive <i>integers</i> on intervals \( \left[ 0,\infty \right) \) or \( \left[ 1,\infty \right) \), depending on whether levels are indexed from \(0\) or \(1\), respectively.
+        </p>
+
+        \[f:U \rightarrow L\]
+        <p class="no-ident-p"> 
+          There's no limit to how many levels we can have. In practice we will simply <i>clamp</i> levels to some <i>maximum</i>. The number of <i>maximum</i> levels allowed in the implementation should not affect the probability distribution, so we can ignore this fact safely.
+        </p>
+        <p>
+          A <i>function</i> is called <i>onto</i>(<i>surjective</i>), if <i>every</i> element of <i>co-domain</i> is mapped <i>onto</i> by the <i>function</i>. The function we are looking for is definitely an onto function. But again, in practice it will not be an onto function due to clamping.
+        </p>
+
+        <p>
+          A <i>function</i> is called <i>one-to-one</i>(<i>injective</i>), if <i>every</i> element of <i>co-domain</i> is mapped to by only one element element from the domain. The function we are looking for will not be a one-to-one function, because in order to create a non-uniform distribution from a uniform we have to map multiple elements from the domain to same value in co-domain, whereby increasing their probability of occurrence.
+        </p>
+        <p class="no-ident-p">
+          Let's illustrate how portions of uniform range are mapped to levels:
+        </p>
+        <img src="range.png" width="700"/>
+        <p >
+          Level \(1\) has probability \(1 \over 2\), hence half the range is mapped to it. 
+        
+          Level \(2\) has probability \(1 \over 4\), so a quarter of range is dedicated to it. It goes on in the same way to infinity. It's interesting to note, that it doesn't actually matter which portion of the uniform range is mapped to which level, as long as there's right proportion of it. For instance it doesn't matter if the \( 1 \over 2 \) portion mapped to level \( 1 \) is continious or scattered over a million bits, as long as there's exactly \( 1 \over 2 \) of it somewhere in total. This gives us some flexibility in how we construct the function.
+        </p>
+        <p>
+          Plotting this function on a graph, reveals a pattern, if it wasn't obvious yet. The function we are looking for maps increasing powers of \( 1 \over 2\) to their corresponding exponents. What power of \( 1 \over 2\) takes it to number x? That question is answered by <i>logarithm</i> of \( x \) base \( 1 \over 2\).
+        </p> 
+        <img src="graph.png" width="700"/>
+        <p>
+          The values of logarithm are conflated into integers using either a <i>ceiling</i> or <i>floor</i> functions. <i>Ceiling</i> produces \(1\) based indices:
+        </p>
+        \[ f\left( x \right) = \left\lceil \log _{ 1 \over 2 }{ x }  \right\rceil \]
+        <p class="no-ident-p">
+          <i>Floor</i> conflates to \(0\) based indices (<i>shown on the graph</i>):
+        </p>
+        \[ f\left( x \right) = \left\lfloor \log _{ 1 \over 2}{ x }  \right\rfloor \]
+        <p>
+          Logarith of base \( 1 \over 2 \) can be represented in terms of natural logarithm (<i>base \(e\)</i>), which is what's available in most standard libraries.
+        </p>
+        \[ \log _{ \, 1/2 }{ x } =\frac { ln{ \, x } }{ ln{\, 1 \over 2} } \]
+        <p class="no-ident-p">
+          Notice that the lower term is a <i>constant</i>, so it could be easily optimized in a program.
+        </p>
+        <p>
+          This is really it! To use this function simply use a <i>standard pseudo-random number generator</i> to produce input values, <i>normalize</i> them into \( \left[ 0,1 \right) \) range, if they are not already normalized. The function will <i>simulate</i> correct probability distribution as it maps a <i>uniform random number</i> into a <i>skip list level</i>. This was accomplished by mapping <i>domain</i> to <i>co-domain</i> with correct proportions. <i>Clamp</i> produced level to <i>maximum</i> allowed level in your implementation.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
