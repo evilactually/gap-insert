@@ -1,0 +1,145 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Unique Key Generation By Gap Insertion In Skip Lists And Binary Trees
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" 
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">
+        Unique Key Generation By Gap Insertion
+      </h1>
+      <p class="abstract">
+        Being able to produce unique identifiers is important for many application. Currently known approaches are inadequate in many situations where efficient use of key space and guarantee of uniqueness are required. To make matters worse, uniqueness is often mistaken to be synonymous with randomness, which is simply not true. In this paper we will give a precise definition of uniqueness and develop an extension to binary tree and skip list data structures to support one more additional operation for automatic insertion into available gaps between elements of a set. The presented algorithm is simple to implement and will retain all the performance characteristics and properties of original data structures it's based on. In particular the \(O(log n)\) complexity of search and insertion is preserved. Software developers already familiar with basic data structures will find this technique to be a powerful addition to their arsenal.
+
+     <!--    Unarguably unique identifiers are important for many applications. Surprisingly, all currently known algorithms or techniques for generating unique identifiers suffer from many drawbacks, including among the major two, inability to guarantee uniqueness and inefficient use of key space. This paper introduces a simple method of finding unused keys in a set of used keys, bounded by a finite interval. The new algorithm is a modification of standard binary tree insertion, that performs search for gaps between keys of a tree, if found, inserts a new node into the gap. -->
+      </p>
+    
+      <div class="content-double">
+        <h2>1. Introduction</h2>
+        <p>
+        Occasionally on the technically minded side of the Internet a question comes up, <i>"How do I generate a unique key/number/identifier in my favorite programming language"</i>. And the usual advice on the topic varies from using a global counter variable<i>(and turning your program in a ticking bomb in best traditions of millennium bug programmers)</i> to slightly saner approach, using UUID - a gigantic 128-bit number that could as well be used to count every atom of an Earth-sized planet. Neither approach is ideal, especially for applications that create and destroy many objects quickly, where a static counter may run out of range way too quickly. Using large numbers for identifiers is part of a solution, but computers can only work efficiently with numbers of finite sizes, and so the question remains open. Is there a better way?
+      </p>
+      <p>
+
+      </p>
+      <p>
+        On the other hand efficient search data structures were never in short supply, and they play an important role in optimizing countless real world applications, even those that may not appear as search problems at first glance. It's an accepted fact of life, that if a problem can be reduced to a search in ordered set, it's almost certain it can be done fast with a binary tree or similar data structure. Search for a unique key is one of those problems.
+      </p>
+      <h2>2. Definitions</h2>
+      <p>
+        Let set \(S\) be a set of all valid keys. This set need not be defined explicitly, it's much more compact and useful to define it as an interval between some \(Minimum\) and \(Maximum\).
+
+        \[S = (Minimum, Maximum)\]
+        
+        Then lets suppose we marked some keys to have certain property, for instance property of being <i>used</i>. Let's define subset \(K\) of \(S\) to be the set of all keys posessing that property.
+
+        \[K= \{ x\in S\,|\,P(x)\} \]
+ 
+        \[K \subseteq S \]
+
+        Then the set \(K'\) of all keys <i>not</i> possessing the property, naturally, is <i>complementary</i> to \(K\) and is also a <i>subset</i>.
+        \[K'= \{ x\in S\,|\, \neg \, P(x)\} \]
+        \[K'=S \setminus K; \, K \subseteq S \]
+        
+        <p>
+        If we define a <i>unique key</i>, as any key that's <i>not used</i>, then set \(K'\) is a set of all <i>unique keys</i>. If that definition is accepted to be <i>true</i>, then all it takes to produce a <i>unique key</i>, is to find <i>any</i> element of the <i>complementary</i> set \(K'\) and possibly <i>move</i> it into the set \(K\), in the event if we wanted to mark it as <i>not</i> being <i>unique</i> anymore.
+        </p>
+
+        <p>
+        This whole operation can be abstractly defined as a function that <i>transfers</i> elements one at a time between two <i>complementary</i> portions \(X\) and \( (U \setminus X) \) of some set \(U\).
+        \[ f:(X,U) \rightarrow (Y, y)\]
+        \[Where\, y \in Y \wedge y \in (U \setminus X) \wedge X \in Y \in U\]
+        Such function produces a new set \(Y\) containing one more element \(y\), that was previously in the complementary set. We will be referring to this function as <i>complementary transfer function</i>.
+        </p>
+        <p>
+          If all the sets are defined as ordered, then we can say that set \(K\) partitions set \(S\) into a set of gaps \(G\). A union of all gaps is equivalent to the complementary set \(K'\). 
+          \[\bigcup _{ \,X\, \in \, G }{ X } = \,K'\]
+          Formally speaking \(G\) is an instance of a <i>set partition</i> of \(K'\).
+        </p> 
+        <p>
+          A more rigorous definition of set G would be awkward and wouldn't provide much in terms of insight. The intuitive image is to think of slicing the interval \((Minimum, Maximum)\) by every element of \(K\) &mdash; the resulting set of intervals would be the set of gaps \(G\).
+        </p>
+        <p>
+          In this way we defined the complementary set \(K'\) in terms of slices of interval \((Minimum, Maximum)\) representing set \(S\), or in terms of <i>gaps</i>. That means all <i>unique keys</i> can be found in <i>gaps</i> between elements of a set \(K\).
+        </p>
+        <h2>2. Gap Insertion</h2>
+        <p>
+          A <i>binary tree</i> is a search-efficient representation of a <i>totally ordered</i> set. A <i>balanced</i> binary tree guarantees <i>worst case</i> time of search to be \( O \left( log {\,N} \right) \). Three most basic operations on binary trees are: <i>search, insert</i> and <i>remove</i>. The simplest of them all is search. <i>Removing</i> and <i>inserting</i> is more difficult, because it can potentially produce an <i>unbalanced</i> tree, and special measures are required to counteract or minimize chances of this happening. Even though more difficult, <i>insertion</i> and <i>removal</i> can be done in <i>logarithmic time</i>. 
+        </p>
+        <p>
+          A standard insertion function in a binary tree, first, performs a search for a key, if it finds the key it leaves the tree unchanged, otherwise it creates a new node at the place where key was supposed to be found and performs balancing restructuring if necessary.
+        </p>
+        <p>
+          In order to implement the <i>complementary transfer function</i> with a binary tree all we have to do, is take the standard insertion function as basis and replace the <i>search criteria</i> for <i>key</i> with <i>search criteria</i> for <i>any non-empty gaps</i>. With the exception of an additional parameter &ndash; the interval defining set \(S\), everything else can be left the same. <i>Complementary transfer function</i> is simply <i>gap insertion</i>.
+        <p>
+        <p>
+          As an example consider a <i>hypothetical</i> tree, where number of gaps is available at each node in <i>constant time</i>. 
+          <img src="gapaug.png" width="400px"/>
+          <p class="figure-dscr"> Figure 1: Gap-augmented tree </p>
+          Search for gap in such tree is trivial, and can be accomplished by <i>recursively</i> following any tree branch that has <i>gaps</i>, until encountering an <i>empty link</i>. <i>Insertion</i> can than proceed as normal, by creating a new node.
+        </p>
+        <p>
+          <i>Augmenting</i> tree nodes is common technique that allows storing values in tree nodes in order to make them accessible in <i>constant time</i> later. It's easy enough to precompute any attribute you might want to associate with a node, if performance is not an issue or if updating is not required. Our use case of binary trees unfortunately falls in neither of those categories, and more care must be taken of what can be stored at the nodes.
+        </p>
+        <p>
+          Updating <i>augmented</i> values can be done <i>efficiently</i> only for values that depend on the <i>node itself</i> and immediate values of it's <i>child nodes</i>. Such values propagate <i>upward</i> from the source of change, but never <i>below</i>. Since every node can only have one <i>parent</i>, that means any change will only have to propagate upward through single path in a tree, preserving the \( O \left( log {\,N} \right) \) complexity. A good example of upward propagating value is <i>size</i>.
+
+          \[ Node.Size = Node.Left.Size + 1 + Node.Right.Size \]
+
+          Tree <i>size</i> is usually straightforward to update during <i>insertion</i> and <i>removing</i>.
+        </p>
+        <p>
+          Values that may be affected by parent nodes cannot be updated efficiently, because every node has two <i>children</i>, <i>doubling</i> the amount of updates that have to be done for each node passed. In worst case, entire tree would have to be updated, destroying any guarantee of <i>logarithmic time</i>. Such values propagate <i>downwards</i> or even <i>both</i> ways. Gap counts happen to be propagating in this manner.
+        </p>
+        <p>
+          Consider what happens with gaps when changing a value of a node at the top, a common occurrence that might happen during balancing or removing. All the binary tree invariants are still preserved and if no gap information was stored we could safely stop at this point without violating integrity of the data structure. The gaps however did <i>not</i> preserve and need updating!
+        </p>
+        <img src="gapupdate.png" width="400px"/>
+        <p class="figure-dscr"> Figure 2: Difficulty of updating gap-augmented tree </p>
+          Clearly counting gaps explicitly, like we count nodes in a size-augmented tree, is not a good approach in this situation. This particular case was lucky to get \( O \left( 2log {\,N} \right) \) complexity, since update propagates down to only two paths. Still any real balancing algorithm would cause havoc to such tree. Not only it would be leaking performance everywhere it matters, but it would also be insanely difficult to implement. 
+        </p>
+
+        <p>Binary trees only can preserve order, they don't guarantee preserving gaps, all the problems mentioned above occur because we are fighting against invariants of binary trees, invariants that are relied on by many existing algorithms, trying to make them into something they are not.</p>
+        
+      <!-- Okey, just be precise, define unique, what are we looking for etc. in terms of sets. Then define data structures briefly and show they normal form. Then show the modified form. That's all.  -->
+
+      
+      
+
+
+        <!-- Introduction to current state of art
+        Binary tree, skip lists all that jazz too
+ -->
+        <!-- Definitions
+        What is unique, what are we looking for
+
+        Gap Insertion For Skip lists
+        Normal Insertion
+
+        Gap Insertion For Binary trees
+        Normal Insertion -->
+
+        
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- 
+  
+  Title
+  Abstract
+  Contents (Simple)
+  MathJax
+  Highlight.js
+
+ 
+
+
+ -->
