@@ -26,18 +26,21 @@
         Occasionally on the technically minded side of the Internet a question comes up, <i>"How do I generate a unique key/number/identifier in my favorite programming language"</i>. And the usual advice on the topic varies from using a global counter variable<i>(and turning your program in a ticking bomb in best traditions of millennium bug programmers)</i> to slightly saner approach, using UUID - a gigantic 128-bit number that could as well be used to count every atom of an Earth-sized planet. Neither approach is ideal, especially for applications that create and destroy many objects quickly, where a static counter may run out of range way too quickly. Using large numbers for identifiers is part of a solution, but computers can only work efficiently with numbers of finite sizes, and so the question remains open. Is there a better way?
       </p>
       <p>
-
-      </p>
-      <p>
         On the other hand efficient search data structures were never in short supply, and they play an important role in optimizing countless real world applications, even those that may not appear as search problems at first glance. It's an accepted fact of life, that if a problem can be reduced to a search in ordered set, it's almost certain it can be done fast with a binary tree or similar data structure. Search for a unique key is one of those problems.
       </p>
+      <p>
+        The method presented here, may not be a silver bullet yet, but it might benefit those applications already relying on symbol tables, and more over it reveals an interesting direction that might be worth exploring further in other contexts.
+      </p>
       <h2>2. Definitions</h2>
+      <p>
+        Before we introduce the actual algorithm for finding <i>unique keys</i>, let's define the problem and it's solution in abstract terms. Most of the terminology here is based on basic <i>set theory</i>.
+      </p>
       <p>
         Let set \(S\) be a set of all valid keys. This set need not be defined explicitly, it's much more compact and useful to define it as an interval between some \(Minimum\) and \(Maximum\).
 
         \[S = (Minimum, Maximum)\]
         
-        Then lets suppose we marked some keys to have certain property, for instance property of being <i>used</i>. Let's define subset \(K\) of \(S\) to be the set of all keys posessing that property.
+        Then lets suppose we marked some keys to have certain property, for instance property of being <i>used</i>. Let's define subset \(K\) of \(S\) to be the set of all keys possessing that property.
 
         \[K= \{ x\in S\,|\,P(x)\} \]
  
@@ -55,6 +58,7 @@
         This whole operation can be abstractly defined as a function that <i>transfers</i> elements one at a time between two <i>complementary</i> portions \(X\) and \( (U \setminus X) \) of some set \(U\).
         \[ f:(X,U) \rightarrow (Y, y)\]
         \[Where\, y \in Y \wedge y \in (U \setminus X) \wedge X \in Y \in U\]
+        IF complementary set is not empty!
         Such function produces a new set \(Y\) containing one more element \(y\), that was previously in the complementary set. We will be referring to this function as <i>complementary transfer function</i>.
         </p>
         <p>
@@ -68,7 +72,10 @@
         <p>
           In this way we defined the complementary set \(K'\) in terms of slices of interval \((Minimum, Maximum)\) representing set \(S\), or in terms of <i>gaps</i>. That means all <i>unique keys</i> can be found in <i>gaps</i> between elements of a set \(K\).
         </p>
-        <h2>2. Gap Insertion</h2>
+        <h2>2. Gap Search</h2>
+        <p>
+          All the definitions above would be useless if there was no way to actually find a <i>gap</i>. In this section we will derive an algorithm that can be used to efficiently search for those gaps. We will start by considering the obvious approach first and explain why it wouldn't work, then move on to a more practical solution.
+        </p>
         <p>
           A <i>binary tree</i> is a search-efficient representation of a <i>totally ordered</i> set. A <i>balanced</i> binary tree guarantees <i>worst case</i> time of search to be \( O \left( log {\,N} \right) \). Three most basic operations on binary trees are: <i>search, insert</i> and <i>remove</i>. The simplest of them all is search. <i>Removing</i> and <i>inserting</i> is more difficult, because it can potentially produce an <i>unbalanced</i> tree, and special measures are required to counteract or minimize chances of this happening. Even though more difficult, <i>insertion</i> and <i>removal</i> can be done in <i>logarithmic time</i>. 
         </p>
@@ -76,37 +83,79 @@
           A standard insertion function in a binary tree, first, performs a search for a key, if it finds the key it leaves the tree unchanged, otherwise it creates a new node at the place where key was supposed to be found and performs balancing restructuring if necessary.
         </p>
         <p>
-          In order to implement the <i>complementary transfer function</i> with a binary tree all we have to do, is take the standard insertion function as basis and replace the <i>search criteria</i> for <i>key</i> with <i>search criteria</i> for <i>any non-empty gaps</i>. With the exception of an additional parameter &ndash; the interval defining set \(S\), everything else can be left the same. <i>Complementary transfer function</i> is simply <i>gap insertion</i>.
+          In order to implement the <i>complementary transfer function</i> with a binary tree all we have to do, is take the standard insertion function as basis and replace the <i>search criteria</i> for <i>key</i> with <i>search criteria</i> for <i>any non-empty gaps</i>. With the exception of an additional parameter &mdash; the interval defining set \(S\), everything else can be left the same. <i>Complementary transfer function</i> is simply <i>gap insertion</i>.
         <p>
         <p>
-          As an example consider a <i>hypothetical</i> tree, where number of gaps is available at each node in <i>constant time</i>. 
+          As an example consider a <i>hypothetical</i> tree, where number of gaps is available at each node in <i>constant time</i>:
+         
+          \[N\, =\, \{ \,1,\,2,\,5,\,6,\,10,\,11,\,13\,\} \]
+          \[S = (0, 15)\]
+          
           <img src="gapaug.png" width="400px"/>
           <p class="figure-dscr"> Figure 1: Gap-augmented tree </p>
+        <p>
           Search for gap in such tree is trivial, and can be accomplished by <i>recursively</i> following any tree branch that has <i>gaps</i>, until encountering an <i>empty link</i>. <i>Insertion</i> can than proceed as normal, by creating a new node.
         </p>
         <p>
           <i>Augmenting</i> tree nodes is common technique that allows storing values in tree nodes in order to make them accessible in <i>constant time</i> later. It's easy enough to precompute any attribute you might want to associate with a node, if performance is not an issue or if updating is not required. Our use case of binary trees unfortunately falls in neither of those categories, and more care must be taken of what can be stored at the nodes.
         </p>
         <p>
-          Updating <i>augmented</i> values can be done <i>efficiently</i> only for values that depend on the <i>node itself</i> and immediate values of it's <i>child nodes</i>. Such values propagate <i>upward</i> from the source of change, but never <i>below</i>. Since every node can only have one <i>parent</i>, that means any change will only have to propagate upward through single path in a tree, preserving the \( O \left( log {\,N} \right) \) complexity. A good example of upward propagating value is <i>size</i>.
+          Updating <i>augmented</i> values can be done <i>efficiently</i> only for values that depend on the <i>node itself</i> and immediate values of it's <i>child nodes</i>. Such values propagate <i>upward</i> from the source of change, but never <i>below</i>. Since every node can only have one <i>parent</i>, that means any change will only have to propagate upward through single path in a tree, preserving the \( O \left( log {\,N} \right) \) complexity. A good example of upward-propagating value<i>(and a one we will need later)</i> is <i>size</i>:
 
           \[ Node.Size = Node.Left.Size + 1 + Node.Right.Size \]
 
           Tree <i>size</i> is usually straightforward to update during <i>insertion</i> and <i>removing</i>.
         </p>
         <p>
-          Values that may be affected by parent nodes cannot be updated efficiently, because every node has two <i>children</i>, <i>doubling</i> the amount of updates that have to be done for each node passed. In worst case, entire tree would have to be updated, destroying any guarantee of <i>logarithmic time</i>. Such values propagate <i>downwards</i> or even <i>both</i> ways. Gap counts happen to be propagating in this manner.
+          On the other hand, values that may be affected by <i>parent nodes</i> cannot be updated efficiently, because every node has two <i>children</i>, <i>doubling</i> the amount of updates that have to be done for each node passed. In worst case, entire tree would have to be updated, destroying any guarantee of <i>logarithmic time</i>. Such values propagate <i>downwards</i> or even <i>both</i> ways. Gap counts happen to be propagating in this manner.
         </p>
         <p>
           Consider what happens with gaps when changing a value of a node at the top, a common occurrence that might happen during balancing or removing. All the binary tree invariants are still preserved and if no gap information was stored we could safely stop at this point without violating integrity of the data structure. The gaps however did <i>not</i> preserve and need updating!
         </p>
         <img src="gapupdate.png" width="400px"/>
         <p class="figure-dscr"> Figure 2: Difficulty of updating gap-augmented tree </p>
-          Clearly counting gaps explicitly, like we count nodes in a size-augmented tree, is not a good approach in this situation. This particular case was lucky to get \( O \left( 2log {\,N} \right) \) complexity, since update propagates down to only two paths. Still any real balancing algorithm would cause havoc to such tree. Not only it would be leaking performance everywhere it matters, but it would also be insanely difficult to implement. 
+        <p>
+          Pictured above is the result of replacing node \(6\) with node \(7\). All the paths and nodes that had to be updated are marked in red. Clearly counting gaps explicitly, like we count nodes in a size-augmented tree, is not a good approach in this situation. This particular case was lucky to get \( O \left( 2log {\,N} \right) \) complexity, since update propagates down to only two paths. Still any real balancing algorithm would cause havoc to such tree. Not only it would be leaking performance everywhere it matters, but it would also be insanely difficult to implement. 
         </p>
+        <p>
+          Fortunately, there's another way to deduce number of <i>gaps</i> in each subtree, based on binary tree invariants, that doesn't involve explicit counting. These two important invariants are:
+        </p>
+        <ul style="font-style: italic;">
+          <li> Each <strong>left child</strong> node is <strong>less</strong> than it's parent node</li>
+          <li> Each <strong>right child</strong> node is <strong>bigger</strong> than it's parent node</li>
+        </ul>
+        <p>
+          These two invariants have consequences that may not be immediately apparent, and can be reinterpreted as this: 
+        </p>
+        <ul style="font-style: italic;">
+          <li> Each <strong>left subtree</strong> can only contain nodes that are <strong>less</strong> than it's parent node</li>
+          <li> Each <strong>right subtree</strong> can only contain nodes that are <strong>bigger</strong> than it's parent node</li>
+        </ul>
+        <p>
+          This fact allows us to define bounding interval \(S\) recursively for each subtree. If you've been waiting for the punchline, this is it.
+        </p>
+        <p>
+          Let \(y\) be the value of node \(Y\) and \(S_{y} = (Min, Max)\) be a bounding interval defining valid potential keys of subtree beginning at node \(Y\).
+        </p>
+        <p class="no-ident-p">      
+          If node \(X\) is the <i>left</i> child of \(Y\), then bounding interval of \(X\) is \(S_{x} = (Min, y) \)
+        </p>
+        <p class="no-ident-p">
+          If node \(Z\) is the <i>right</i> child of \(Y\), then bounding interval of \(Z\) is \(S_{z} = (y, Max) \)
+        </p>
+        <p>
+          We will be referring to the above rules as <i>boundary propagation</i> rules, they allow us to construct set <i>boundary</i> \(S\) at each node, given we know <i>boundary</i> of it's parent. 
+        </p>
+        <p>
+          Our <i>abstract gap search</i> algorithm relied on the fact that <i>gap count</i> is accessable at each node in <i>constant time</i>. Following from previous definitions, <i>gap count</i> is simply the <i>cardinality</i>(set size) of <i>complementary</i> set \(K'\), the set difference.
+          \[\left| K' \right| = \left| \, S \setminus K \, \right| \]
+        </p>
+        <p>
+          Cardinality of set difference is also, intuitively, same as difference of cardinalities. Making it possible to deduce cardinality of complementary set \(K'\) from cardinalities of sets \(S\) and \(K\):
 
-        <p>Binary trees only can preserve order, they don't guarantee preserving gaps, all the problems mentioned above occur because we are fighting against invariants of binary trees, invariants that are relied on by many existing algorithms, trying to make them into something they are not.</p>
-        
+          \[\left| K' \right| = \left| \, S \, \right| - \left| \, K \, \right| \]
+
+        </p>
       <!-- Okey, just be precise, define unique, what are we looking for etc. in terms of sets. Then define data structures briefly and show they normal form. Then show the modified form. That's all.  -->
 
       
