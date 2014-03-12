@@ -118,31 +118,34 @@
           Pictured above is the result of replacing node \(6\) with node \(7\). All the paths and nodes that had to be updated are marked in red. Clearly counting gaps explicitly, like we count nodes in a size-augmented tree, is not a good approach in this situation. This particular case was lucky to get \( O \left( 2log {\,N} \right) \) complexity, since update propagates down to only two paths. Still any real balancing algorithm would cause havoc to such tree. Not only it would be leaking performance everywhere it matters, but it would also be insanely difficult to implement. 
         </p>
         <p>
-          Fortunately, there's another way to deduce number of <i>gaps</i> in each subtree, based on binary tree invariants, that doesn't involve explicit counting. These two important invariants are:
+          Fortunately, there's another way to deduce number of <i>gaps</i> in each subtree, based on binary tree invariants, that doesn't involve explicit counting. Those two important invariants are:
+          <ul style="font-style: italic;">
+            <li>If node \(X\) is the <i>left</i> child of node \(Y\), value of \(X\) is <i>less</i> than value of \(Y\)</li>
+            <li>If node \(Z\) is the <i>right</i> child of node \(Y\), value of \(X\) is <i>bigger</i> than value of \(Y\)</li>
+          </ul>
         </p>
-        <ul style="font-style: italic;">
-          <li> Each <strong>left child</strong> node is <strong>less</strong> than it's parent node</li>
-          <li> Each <strong>right child</strong> node is <strong>bigger</strong> than it's parent node</li>
-        </ul>
         <p>
-          These two invariants have consequences that may not be immediately apparent, and can be reinterpreted as this: 
+          It may not be immediately obvious, but these two invariants can be generalized to make assertions on entire subtrees:
         </p>
         <ul style="font-style: italic;">
-          <li> Each <strong>left subtree</strong> can only contain nodes that are <strong>less</strong> than it's parent node</li>
-          <li> Each <strong>right subtree</strong> can only contain nodes that are <strong>bigger</strong> than it's parent node</li>
+          <li> For every node \(X \,|\, X \in\) <i>left subtree</i> of \(Y\), value of \(X\) is <i>less</i> than value of \(Y\)</li>
+          <li> For every node \(Z \,|\, Z \in\) <i>right subtree</i> of \(Y\), value of \(Z\) is <i>bigger</i> than value of \(Y\)</li>
         </ul>
         <p>
           This fact allows us to define bounding interval \(S\) recursively for each subtree. If you've been waiting for the punchline, this is it.
         </p>
         <p>
-          Let \(y\) be the value of node \(Y\) and \(S_{y} = (Min, Max)\) be a bounding interval defining valid potential keys of subtree beginning at node \(Y\).
+          Let \(y\) be the value of node \(Y\) and \(S_{y} = (Min, Max)\) be a bounding interval defining valid potential keys of subtree beginning at node \(Y\), then following two rules can be observed:
         </p>
-        <p class="no-ident-p">      
-          If node \(X\) is the <i>left</i> child of \(Y\), then bounding interval of \(X\) is \(S_{x} = (Min, y) \)
-        </p>
-        <p class="no-ident-p">
-          If node \(Z\) is the <i>right</i> child of \(Y\), then bounding interval of \(Z\) is \(S_{z} = (y, Max) \)
-        </p>
+          <ul style="font-style: italic;">
+            <li>
+              If node \(X\) is the <i>left</i> child of \(Y\), then bounding interval of \(X\) is \(S_{x} = (Min, y) \)
+            </li>
+            <li>
+              If node \(Z\) is the <i>right</i> child of \(Y\), then bounding interval of \(Z\) is \(S_{z} = (y, Max) \)
+            </li>
+          </ul>
+        
         <p>
           We will be referring to the above rules as <i>boundary propagation</i> rules, they allow us to construct set <i>boundary</i> \(S\) at each node, given we know <i>boundary</i> of it's parent. 
         </p>
