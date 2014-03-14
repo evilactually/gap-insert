@@ -59,8 +59,7 @@ void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
     int dir = visited == 0 || stack[sp]->links[0] == NULL;
     struct RBSTNode* next = stack[sp]->links[dir];
     if(!next || visited == 1) {
-      visited = stack[sp]->key > stack[sp-1]->key;
-      
+      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
       sp = sp - 1;
     } else {
       visited = -1;
@@ -85,8 +84,9 @@ void rbst_postord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
   do {
     int dir = visited == 0 || stack[sp]->links[0] == NULL;
     struct RBSTNode* next = stack[sp]->links[dir];
+
     if(!next || visited == 1) {
-      visited = stack[sp]->key > stack[sp-1]->key;
+      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
       f(stack[sp]);
       sp = sp - 1;
     } else {
@@ -115,7 +115,7 @@ void rbst_inord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
     if(dir && visited < 1)
       f(stack[sp]);
     if(!next || visited == 1) {
-      visited = stack[sp]->key > stack[sp-1]->key;
+      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
       sp = sp - 1;
     } else {
       visited = -1;
