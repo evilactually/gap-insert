@@ -23,7 +23,7 @@
       <div class="content-double">
         <h2>1. Introduction</h2>
         <p>
-        Occasionally on the technically minded side of the Internet a question comes up, <i>"How do I generate a unique key/number/identifier in my favorite programming language"</i>. And the usual advice on the topic varies from using a global counter variable<i>(and turning your program in a ticking bomb in best traditions of millennium bug programmers)</i> to slightly saner approach, using UUID - a gigantic 128-bit number that could as well be used to count every atom of an Earth-sized planet. Neither approach is ideal, especially for applications that create and destroy many objects quickly, where a static counter may run out of range way too quickly. Using large numbers for identifiers is part of a solution, but computers can only work efficiently with numbers of finite sizes, and so the question remains open. Is there a better way?
+        Occasionally on the technically minded side of the Internet a question comes up, <i>"How do I generate a unique key/number/identifier in my favorite programming language"</i>. And the usual advice on the topic varies from using a global counter variable<i>(and turning your program into a ticking bomb in best traditions of millennium bug programmers)</i> to slightly saner approach, using UUID - a gigantic 128-bit number that could as well be used to count every atom of an Earth-sized planet. Neither approach is ideal, especially for applications that create and destroy many objects quickly, where a static counter may run out of range way too quickly. Using large numbers for identifiers is part of a solution, but computers can only work efficiently with numbers of finite sizes, and so the question remains open. Is there a better way?
       </p>
       <p>
         On the other hand efficient search data structures were never in short supply, and they play an important role in optimizing countless real world applications, even those that may not appear as search problems at first glance. It's an accepted fact of life, that if a problem can be reduced to a search in ordered set, it's almost certain it can be done fast with a binary tree or similar data structure. Search for a unique key is one of those problems.
@@ -97,7 +97,7 @@
           Search for gap in such tree is trivial, and can be accomplished by <i>recursively</i> following any tree branch that has <i>gaps</i>, until encountering an <i>empty link</i>. <i>Insertion</i> can than proceed as normal, by creating a new node.
         </p>
         <p>
-          <i>Augmenting</i> tree nodes is common technique that allows storing values in tree nodes in order to make them accessible in <i>constant time</i> later. It's easy enough to precompute any attribute you might want to associate with a node, if performance is not an issue or if updating is not required. Our use case of binary trees unfortunately falls in neither of those categories, and more care must be taken of what can be stored at the nodes.
+          <i>Augmenting</i> tree nodes is common technique that allows storing values in tree nodes in order to make them accessible in <i>constant time</i> later. It's easy enough to compute in advance any attribute you might want to associate with a node, especially if performance is not an issue or if updating is not required. Our use case of binary trees unfortunately falls in neither of those categories, and more care must be taken of what can be stored at the nodes.
         </p>
         <p>
           Updating <i>augmented</i> values can be done <i>efficiently</i> only for values that depend on the <i>node itself</i> and immediate values of it's <i>child nodes</i>. Such values propagate <i>upward</i> from the source of change, but never <i>below</i>. Since every node can only have one <i>parent</i>, that means any change will only have to propagate upward through single path in a tree, preserving the \( O \left( log {\,N} \right) \) complexity. A good example of upward-propagating value<i>(and a one we will need later)</i> is <i>size</i>:
@@ -121,7 +121,7 @@
           Fortunately, there's another way to deduce number of <i>gaps</i> in each subtree, based on binary tree invariants, that doesn't involve explicit counting. Those two important invariants are:
           <ul style="font-style: italic;">
             <li>If node \(X\) is the <i>left</i> child of node \(Y\), value of \(X\) is <i>less</i> than value of \(Y\)</li>
-            <li>If node \(Z\) is the <i>right</i> child of node \(Y\), value of \(X\) is <i>bigger</i> than value of \(Y\)</li>
+            <li>If node \(Z\) is the <i>right</i> child of node \(Y\), value of \(Z\) is <i>bigger</i> than value of \(Y\)</li>
           </ul>
         </p>
         <p>
@@ -145,19 +145,23 @@
               If node \(Z\) is the <i>right</i> child of \(Y\), then bounding interval of \(Z\) is \(S_{z} = (y, Max) \)
             </li>
           </ul>
-        
+        <img src="boundaries.png" width="400px"/>
         <p>
           We will be referring to the above rules as <i>boundary propagation</i> rules, they allow us to construct set <i>boundary</i> \(S\) at each node, given we know <i>boundary</i> of it's parent. 
         </p>
         <p>
-          Our <i>abstract gap search</i> algorithm relied on the fact that <i>gap count</i> is accessable at each node in <i>constant time</i>. Following from previous definitions, <i>gap count</i> is simply the <i>cardinality</i>(set size) of <i>complementary</i> set \(K'\), the set difference.
+          Our <i>abstract gap search</i> algorithm relied on the fact that <i>gap count</i> is accessible at each node in <i>constant time</i>. Following from previous definitions, <i>gap count</i> is simply the <i>cardinality</i>(set size) of <i>complementary</i> set \(K'\), the set difference.
           \[\left| K' \right| = \left| \, S \setminus K \, \right| \]
         </p>
         <p>
           Cardinality of set difference is also, intuitively, same as difference of cardinalities. Making it possible to deduce cardinality of complementary set \(K'\) from cardinalities of sets \(S\) and \(K\):
-
           \[\left| K' \right| = \left| \, S \, \right| - \left| \, K \, \right| \]
-
+        </p>
+        <p font-style: italic;>
+          The last statement can be more intuitively thought of as a difference between number of nodes tree can <i>potentially</i> have and number of nodes it <i>actually</i> has. That difference is the total number of gaps in a subtree:
+        </p>
+        <p class="statement">
+          Number Of Gaps = Potential Size - Actual Size
         </p>
       <!-- Okey, just be precise, define unique, what are we looking for etc. in terms of sets. Then define data structures briefly and show they normal form. Then show the modified form. That's all.  -->
 

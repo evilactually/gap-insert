@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="boundaries.svg"
+   inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="-69.756474 : 997.56406 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective3859" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="195.18406"
+     inkscape:cy="964.1843"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="842"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4266"
+       transform="translate(-6,-18)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008">
+      <path
+         inkscape:export-ydpi="150.04008"
+         inkscape:export-xdpi="150.04008"
+         inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/gapaug.png"
+         transform="translate(-71.215754,-65.659915)"
+         d="m 277.79194,114.94062 c 0,10.04205 -8.1407,18.18275 -18.18275,18.18275 -10.04205,0 -18.18274,-8.1407 -18.18274,-18.18275 0,-10.04205 8.14069,-18.182745 18.18274,-18.182745 10.04205,0 18.18275,8.140695 18.18275,18.182745 z"
+         sodipodi:ry="18.182745"
+         sodipodi:rx="18.182745"
+         sodipodi:cy="114.94062"
+         sodipodi:cx="259.60919"
+         id="path2985"
+         style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="150.04008"
+         inkscape:export-xdpi="150.04008"
+         inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/gapaug.png"
+         sodipodi:linespacing="125%"
+         id="text3755"
+         y="57.275181"
+         x="181.35588"
+         style="font-size:22.60749817px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="57.275181"
+           x="181.35588"
+           id="tspan3757"
+           sodipodi:role="line">Y</tspan></text>
+    </g>
+    <g
+       id="g3209"
+       transform="translate(-4,-18)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008">
+      <path
+         inkscape:export-ydpi="150.04008"
+         inkscape:export-xdpi="150.04008"
+         inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/gapaug.png"
+         transform="translate(-3.2157545,-15.659915)"
+         sodipodi:type="arc"
+         style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path3766"
+         sodipodi:cx="259.60919"
+         sodipodi:cy="114.94062"
+         sodipodi:rx="18.182745"
+         sodipodi:ry="18.182745"
+         d="m 277.79194,114.94062 c 0,10.04205 -8.1407,18.18275 -18.18275,18.18275 -10.04205,0 -18.18274,-8.1407 -18.18274,-18.18275 0,-10.04205 8.14069,-18.182745 18.18274,-18.182745 10.04205,0 18.18275,8.140695 18.18275,18.182745 z" />
+      <text
+         inkscape:export-ydpi="150.04008"
+         inkscape:export-xdpi="150.04008"
+         inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/gapaug.png"
+         xml:space="preserve"
+         style="font-size:22.60749817px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="249.56508"
+         y="107.27518"
+         id="text3768"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan3770"
+           x="249.56508"
+           y="107.27518">Z</tspan></text>
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path3774"
+       sodipodi:cx="259.60919"
+       sodipodi:cy="114.94062"
+       sodipodi:rx="18.182745"
+       sodipodi:ry="18.182745"
+       d="m 277.79194,114.94062 a 18.182745,18.182745 0 1 1 -36.36549,0 18.182745,18.182745 0 1 1 36.36549,0 z"
+       transform="translate(-143.21575,-33.659915)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <text
+       xml:space="preserve"
+       style="font-size:22.60749817px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="108.55494"
+       y="89.275177"
+       id="text3776"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008"><tspan
+         sodipodi:role="line"
+         id="tspan3778"
+         x="108.55494"
+         y="89.275177">X</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       id="path3806"
+       sodipodi:cx="259.60919"
+       sodipodi:cy="114.94062"
+       sodipodi:rx="18.182745"
+       sodipodi:ry="18.182745"
+       d="m 277.79194,114.94062 a 18.182745,18.182745 0 1 1 -36.36549,0 18.182745,18.182745 0 1 1 36.36549,0 z"
+       transform="translate(32.784246,14.340085)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       d="m 277.79194,114.94062 a 18.182745,18.182745 0 1 1 -36.36549,0 18.182745,18.182745 0 1 1 36.36549,0 z"
+       sodipodi:ry="18.182745"
+       sodipodi:rx="18.182745"
+       sodipodi:cy="114.94062"
+       sodipodi:cx="259.60919"
+       id="path3814"
+       style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       sodipodi:type="arc"
+       transform="translate(-47.215754,14.340085)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       d="m 277.79194,114.94062 a 18.182745,18.182745 0 1 1 -36.36549,0 18.182745,18.182745 0 1 1 36.36549,0 z"
+       sodipodi:ry="18.182745"
+       sodipodi:rx="18.182745"
+       sodipodi:cy="114.94062"
+       sodipodi:cx="259.60919"
+       id="path3822"
+       style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       sodipodi:type="arc"
+       transform="translate(-107.21575,14.340085)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-opacity:0;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       id="path3830"
+       sodipodi:cx="259.60919"
+       sodipodi:cy="114.94062"
+       sodipodi:rx="18.182745"
+       sodipodi:ry="18.182745"
+       d="m 277.79194,114.94062 a 18.182745,18.182745 0 1 1 -36.36549,0 18.182745,18.182745 0 1 1 36.36549,0 z"
+       transform="translate(-187.21575,14.340085)"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#d40000;fill-opacity:0;stroke:#cc0000;stroke-opacity:1"
+       id="g3861"
+       inkscape:perspectiveID="#perspective3859"
+       inkscape:corner0="-0.22948796 : 0.48952655 : 0 : 1"
+       inkscape:corner7="-0.32442784 : 0.39372745 : 0.25 : 1">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3873"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="11"
+         d="m 513.39249,219.53072 52.66085,-31.45443 7.21998,103.25045 -53.33254,21.84888 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3863"
+         style="fill:#353564;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="6"
+         d="m 438.53902,120.03508 8.67294,124.02887 72.72882,69.11167 -6.54829,-93.6449 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3865"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="5"
+         d="m 438.53902,120.03508 61.62901,-57.076736 65.88531,125.117946 -52.66085,31.45443 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3871"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="13"
+         d="m 447.21196,244.06395 62.84784,-39.64664 63.21352,86.90943 -53.33254,21.84888 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3869"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="14"
+         d="m 500.16803,62.958344 9.89177,141.458966 63.21352,86.90943 -7.21998,-103.25045 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3867"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="3"
+         d="m 438.53902,120.03508 61.62901,-57.076736 9.89177,141.458966 -62.84784,39.64664 z" />
+    </g>
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#d40000;fill-opacity:0;stroke:#cc0000;stroke-opacity:1"
+       id="g3875"
+       inkscape:perspectiveID="#perspective3859"
+       inkscape:corner0="-0.23327982 : 0.62402569 : 0 : 1"
+       inkscape:corner7="-0.32704634 : 0.58894607 : 0.073866661 : 1">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3887"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="11"
+         d="m 456.2065,-5.7233806 57.2787,-66.7829064 3.2766,46.857547 -57.6442,61.555999 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3877"
+         style="fill:#353564;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="6"
+         d="m 428.47106,-56.96764 3.19156,45.641382 27.45498,47.233517 -2.9111,-41.6306396 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3879"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="5"
+         d="m 428.47106,-56.96764 59.70135,-81.25348 25.31279,65.714833 -57.2787,66.7829064 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3885"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="13"
+         d="m 431.66262,-11.326258 60.14604,-74.894004 24.95314,60.571522 -57.6442,61.555999 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3883"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="14"
+         d="m 488.17241,-138.22112 3.63625,52.000858 24.95314,60.571522 -3.2766,-46.857547 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3881"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="3"
+         d="m 428.47106,-56.96764 59.70135,-81.25348 3.63625,52.000858 -60.14604,74.894004 z" />
+    </g>
+    <g
+       sodipodi:type="inkscape:box3d"
+       style="fill:#d40000;fill-opacity:0;stroke:#cc0000;stroke-opacity:1"
+       id="g3889"
+       inkscape:perspectiveID="#perspective3859"
+       inkscape:corner0="-0.51395322 : 0.1922997 : 0 : 1"
+       inkscape:corner7="-0.51827345 : 0.17387192 : 0.25 : 1">
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3901"
+         style="fill:#e9e9ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="11"
+         d="m 739.97567,503.84886 4.36894,-0.13186 1.75674,25.12263 -4.37924,-0.0156 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3897"
+         style="fill:#d7d7ff;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="14"
+         d="m 744.47441,492.05889 2.66844,38.16043 -1.0415,-1.37969 -1.75674,-25.12263 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3899"
+         style="fill:#afafde;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="13"
+         d="m 740.50187,530.18343 6.64098,0.0359 -1.0415,-1.37969 -4.37924,-0.0156 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3891"
+         style="fill:#353564;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="6"
+         d="m 737.85715,492.36219 2.64472,37.82124 1.22024,-1.35941 -1.74644,-24.97516 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3893"
+         style="fill:#4d4d9f;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="5"
+         d="m 737.85715,492.36219 6.61726,-0.3033 -0.1298,11.65811 -4.36894,0.13186 z" />
+      <path
+         sodipodi:type="inkscape:box3dside"
+         id="path3895"
+         style="fill:#8686bf;fill-rule:evenodd;stroke:none"
+         inkscape:box3dsidetype="3"
+         d="m 737.85715,492.36219 6.61726,-0.3033 2.66844,38.16043 -6.64098,-0.0359 z" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:3, 1;stroke-dashoffset:0"
+       d="m 264.03404,95.24943 16.7188,20.06256"
+       id="path3919"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:connection-end="#path3806"
+       inkscape:connection-end-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:3, 1;stroke-dashoffset:0"
+       d="M 84.680042,115.87714 104.10684,94.68427"
+       id="path3927"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:connection-start="#path3830"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end="#path3774"
+       inkscape:connection-end-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:3, 1;stroke-dashoffset:0"
+       d="M 141.48316,114.73366 127.30373,95.827753"
+       id="path3929"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:connection-start="#path3822"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end="#path3774"
+       inkscape:connection-end-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.82485056px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 26.498536,34.822667 0,111.776443"
+       id="path3935"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3945"
+       d="m 336.49854,35.955457 0,110.648183"
+       style="fill:none;stroke:#000000;stroke-width:0.82067704px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.93947792px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="317.20291"
+       y="27.355431"
+       id="text3947"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008"><tspan
+         sodipodi:role="line"
+         id="tspan3949"
+         x="317.20291"
+         y="27.355431">Max</tspan></text>
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       style="fill:none;stroke:#000000;stroke-width:0.74674749px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 183.08797,81.356878 0,65.428472"
+       id="path3182"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="184.64285"
+       y="85.576477"
+       id="text3190"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3192"></tspan></text>
+    <text
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       xml:space="preserve"
+       style="font-size:22.60749817px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="176.06825"
+       y="71.275177"
+       id="text3194"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3196"
+         x="176.06825"
+         y="71.275177">y</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 130.88756,70.300312 167.89932,42.261099"
+       id="path3198"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#path3774"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end="#g4266"
+       inkscape:connection-end-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 197.19049,41.850028 40.4059,28.861354"
+       id="path3200"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#g4266"
+       inkscape:connection-start-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.58536583;stroke-miterlimit:4;stroke-dasharray:3, 1;stroke-dashoffset:0"
+       d="m 224.03404,115.31199 16.7188,-20.062565"
+       id="path3216"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-end="#g3209"
+       inkscape:connection-end-point="d4"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3218"
+       d="m 254.12964,128.27455 0,18.73598"
+       style="fill:none;stroke:#000000;stroke-width:0.65867937;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.51707314999999998;stroke-miterlimit:4;stroke-dasharray:1.9760381,0.65867937;stroke-dashoffset:0"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       style="fill:none;stroke:#000000;stroke-width:0.83048731;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.51707314999999998;stroke-miterlimit:4;stroke-dasharray:2.49146193,0.83048731;stroke-dashoffset:0"
+       d="m 115.26623,128.27455 0,18.73598"
+       id="path3220"
+       inkscape:connector-curvature="0" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       d="M 97.7661,150.96495 87.413647,140.63214"
+       id="path3996"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path3998"
+       d="M 47.235075,151.41138 58.12324,140.63214"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path4000"
+       d="M 127.41365,150.96495 137.7661,140.63214"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       d="M 177.7661,150.96495 167.41365,140.63214"
+       id="path4002"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path4004"
+       d="M 187.41365,150.96495 197.7661,140.63214"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       d="M 237.7661,150.96495 227.41365,140.63214"
+       id="path4006"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <path
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:connector-curvature="3"
+       inkscape:connector-type="polyline"
+       id="path4008"
+       d="M 267.41365,150.96495 277.7661,140.63214"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.26699996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.36097562000000000;stroke-dasharray:2.53399992,2.53399992;stroke-dashoffset:0"
+       d="M 317.7661,150.96495 307.41365,140.63214"
+       id="path4010"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="3"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-ydpi="150.04008" />
+    <text
+       inkscape:export-ydpi="150.04008"
+       inkscape:export-xdpi="150.04008"
+       inkscape:export-filename="/home/echolot/src/echolot-1.github.io/unique-key-find/boundaries.png"
+       sodipodi:linespacing="125%"
+       id="text4016"
+       y="27.355431"
+       x="9.3457689"
+       style="font-size:16.93947792px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       xml:space="preserve"><tspan
+         y="27.355431"
+         x="9.3457689"
+         id="tspan4018"
+         sodipodi:role="line">Min</tspan></text>
+  </g>
+</svg>
