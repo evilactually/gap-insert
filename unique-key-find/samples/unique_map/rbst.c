@@ -1,10 +1,9 @@
-#include <assert.h>
-#include <stdlib.h> // NULL
-#include <stdio.h>  // printf
-#include <math.h>   // log
 #include "common.h"
 #include "rbst.h"
 
+#include <assert.h>
+#include <stdlib.h> // NULL
+#include <math.h>   // log, rand, ceil, ...
 
 // allowable deviation from log N depth (used to allocate stack) 
 #define MAX_DEPTH_FACTOR 1.2

@@ -302,6 +302,8 @@ TEST(RBST, ForEach)
   }
 
   rbst_for_each(tree, test_pair);
+
+  rbst_free(tree);
 }
 
 TEST(RBST, InOrdTraversal)
@@ -336,8 +338,6 @@ TEST(RBST, PreOrdTraversal)
 
   rbst_preord_apply(stdtree, verify_node);
 }
-
-// TODO: test traversal functions
 
 TEST_GROUP_RUNNER(RBST)
 {

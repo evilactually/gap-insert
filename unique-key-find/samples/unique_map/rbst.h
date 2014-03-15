@@ -30,6 +30,12 @@ void* rbst_remove(struct RBST* tree, int key);
 
 void rbst_for_each(struct RBST* rbst, void (*f)(int, void*));
 
+void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*));
+
+void rbst_postord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*));
+
+void rbst_inord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*));
+
 int rbst_count(const struct RBST* const tree);
 
 int rbst_gap_count(const struct RBST* const tree);
