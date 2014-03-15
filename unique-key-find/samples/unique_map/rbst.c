@@ -41,7 +41,11 @@ int count(const struct RBSTNode* const node)
   return node->count;
 }
 
-void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
+#define IN_ORDER   0x01
+#define POST_ORDER 0x02
+#define PRE_ORDER  0x03
+
+void apply_for_each(struct RBST* rbst, void (*f)(struct RBSTNode*), int order)
 {
   rbst->write_lock = true;
 
@@ -51,77 +55,37 @@ void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
   struct RBSTNode* stack[rbst->MAX_DEPTH];
   int sp = 0;
   stack[0] = rbst->root;
-  int visited = -1;
+  int from = -1;
   do {
-    if(visited < 0) 
-      f(stack[sp]);
-
-    int dir = visited == 0 || stack[sp]->links[0] == NULL;
-    struct RBSTNode* next = stack[sp]->links[dir];
-    if(!next || visited == 1) {
-      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
-      sp = sp - 1;
-    } else {
-      visited = -1;
-      stack[++sp] = next;
-    }
-  } while(sp > -1);
-
-  rbst->write_lock = false;
-}
-
-void rbst_postord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
-{
-  rbst->write_lock = true;
-
-  if(!rbst->root)
-    return;
-
-  struct RBSTNode* stack[rbst->MAX_DEPTH];
-  int sp = 0;
-  stack[0] = rbst->root;
-  int visited = -1;
-  do {
-    int dir = visited == 0 || stack[sp]->links[0] == NULL;
+    // prefer left links if they are not visited
+    int dir = from == 0 || stack[sp]->links[0] == NULL;
+    
+    // if going to right and not back from right
+    if(order == IN_ORDER && dir && from < 1)
+      f(stack[sp]); // in ord
+    
+    // if haven't visited any sub nodes yet
+    if(order == PRE_ORDER && from < 0) 
+      f(stack[sp]); // pre order
+    
     struct RBSTNode* next = stack[sp]->links[dir];
 
-    if(!next || visited == 1) {
-      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
-      f(stack[sp]);
+    // if back from right or no right
+    if(!next || from == 1) { 
+      // record relation to parent we are returning to
+      from = sp > 0 ? stack[sp]->key > stack[sp-1]->key : -1;
+      
+      if(order == POST_ORDER)
+        f(stack[sp]); // post order
+      
+      // return to parent
       sp = sp - 1;
     } else {
-      visited = -1;
+      // not returning from anywhere, going down
+      from = -1;
       stack[++sp] = next;
     }
-  } while(sp > -1);
-
-  rbst->write_lock = false;
-}
-
-void rbst_inord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
-{
-  rbst->write_lock = true;
-
-  if(!rbst->root)
-  return;
-
-  struct RBSTNode* stack[rbst->MAX_DEPTH];
-  int sp = 0;
-  stack[0] = rbst->root;
-  int visited = -1;
-  do {
-    int dir = visited == 0 || stack[sp]->links[0] == NULL;
-    struct RBSTNode* next = stack[sp]->links[dir];
-    if(dir && visited < 1)
-      f(stack[sp]);
-    if(!next || visited == 1) {
-      visited = sp > 0 && stack[sp]->key > stack[sp-1]->key;
-      sp = sp - 1;
-    } else {
-      visited = -1;
-      stack[++sp] = next;
-    }
-  } while(sp > -1);
+  } while(sp > -1); // until stack is empty
 
   rbst->write_lock = false;
 }
@@ -335,7 +299,22 @@ void rbst_for_each(struct RBST* rbst, void (*f)(int, void*))
   rbst_inord_apply(rbst, pair_apply);
 
   rbst->write_lock = false;
- }
+}
+
+void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
+{
+  apply_for_each(rbst, f, PRE_ORDER);
+}
+
+void rbst_postord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
+{
+  apply_for_each(rbst, f, POST_ORDER);
+}
+
+void rbst_inord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
+{
+  apply_for_each(rbst, f, IN_ORDER);
+}
 
 int rbst_count(const struct RBST* const tree)
 {
