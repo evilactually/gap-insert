@@ -4,18 +4,25 @@
     <title>
       Unique Key Generation By Gap Insertion In Skip Lists And Binary Trees
     </title>
+    <link rel="stylesheet" href="styles/mono-blue.css">
+    <script src="highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap11.css">
     <script type="text/javascript" 
       src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
+    </script> 
+    <script src="jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="sanitize.js"></script>
   </head>
   <body>
+
     <div class="container">
       <h1 class="title">
         Unique Key Generation By Gap Insertion
       </h1>
       <p class="abstract">
-        Being able to produce unique identifiers is important for many application. Currently known approaches are inadequate in many situations where efficient use of key space and guarantee of uniqueness are required. To make matters worse, uniqueness is often mistaken to be synonymous with randomness, which is simply not true. In this paper we will give a precise definition of uniqueness and develop an extension to binary tree and skip list data structures to support one more additional operation for automatic insertion into available gaps between elements of a set. The presented algorithm is simple to implement and will retain all the performance characteristics and properties of original data structures it's based on. In particular the \(O(log n)\) complexity of search and insertion is preserved. Software developers already familiar with basic data structures will find this technique to be a powerful addition to their arsenal.
+        Being able to produce unique identifiers is important for many application. Currently known approaches are inadequate in many situations where efficient use of key space and guarantee of uniqueness are required. To make matters worse, uniqueness is often mistaken to be synonymous with randomness, which is simply not true. In this paper we will give a precise definition of uniqueness and develop an extension to binary tree data structure to support one more additional operation for automatic insertion into available gaps between elements of an ordered set. The presented algorithm is simple to implement and will retain all the performance characteristics and properties of binary tree without imposing any limitations. In particular the \(O \left(log {\,N} \right)\) complexity of search and insertion is preserved. Software developers already familiar with basic data structures will find this technique to be a powerful addition to their programming repertoire.
 
      <!--    Unarguably unique identifiers are important for many applications. Surprisingly, all currently known algorithms or techniques for generating unique identifiers suffer from many drawbacks, including among the major two, inability to guarantee uniqueness and inefficient use of key space. This paper introduces a simple method of finding unused keys in a set of used keys, bounded by a finite interval. The new algorithm is a modification of standard binary tree insertion, that performs search for gaps between keys of a tree, if found, inserts a new node into the gap. -->
       </p>
@@ -94,7 +101,26 @@
           <img src="gapaug.png" width="400px"/>
           <p class="figure-dscr"> Figure 1: Gap-augmented tree </p>
         <p>
-          Search for gap in such tree is trivial, and can be accomplished by <i>recursively</i> following any tree branch that has <i>gaps</i>, until encountering an <i>empty link</i>. <i>Insertion</i> can than proceed as normal, by creating a new node.
+          Search for gap in such tree is trivial, and can be accomplished by <i>recursively</i> following any tree branch that has <i>gaps</i>, until encountering an <i>empty link</i>. <i>Insertion</i> can than proceed as normal, by creating a new node. Below is a sketch of how such an algorithm might look, in real implementation more care must be taken to consider edge cases, but this pseudo-code should be sufficient enough to show simplicity of the concept.
+        </p>
+        <p>
+<pre><code>
+-- Pseudo-code for abstract gap insertion
+
+Gap-Insert(Node) -> Key {
+  if (Node Is Leaf):
+    Insert Here 
+    Return Key
+  else
+    if(Left Node Has Gaps):
+      Go Left
+    else if (Right Node Has Gaps):
+      Go Right
+    else:
+      Fail, No Space
+}
+
+</code></pre>
         </p>
         <p>
           <i>Augmenting</i> tree nodes is common technique that allows storing values in tree nodes in order to make them accessible in <i>constant time</i> later. It's easy enough to compute in advance any attribute you might want to associate with a node, especially if performance is not an issue or if updating is not required. Our use case of binary trees unfortunately falls in neither of those categories, and more care must be taken of what can be stored at the nodes.
@@ -163,6 +189,154 @@
         <p class="statement">
           Number Of Gaps = Potential Size - Actual Size
         </p>
+        <p>
+          Where <i>actual size</i> is number of nodes augmented at each node, as described before and available in <i>constant time</i>. Potential size is simply size of <i>open interval</i> of valid possible keys.
+
+          \[
+          f \left(A,\,B \right) = \left\{\begin{array}{ll}
+          B-A-1 & : A \lt B \\
+          0 & : A = B
+          \end{array}
+          \right.
+          \]
+        </p>
+        <p>
+          We now have all the elements we need to turn the <i>abstract gap insertion</i> algorithm into a real one. We need to be able to calculate number of <i>gaps</i> in <i>constant time</i> at each node. Number of <i>gaps</i> can be <i>deduced</i> from <i>potential</i> and <i>actual size</i>. <i>Actual size</i> is already known and available in <i>constant time</i>. <i>Potential size</i> can be computed with a simple arithmetic function if the <i>bounding interval</i> is known. <i>Bounding intervals</i> itself can be propagated <i>recursively</i> to each node according to <i>propagation rules</i>.
+        </p>
+        <p>
+          With that knowledge we can reshape our abstract gap insertion into something that can actually be represented on a computer: 
+        </p>
+<pre><code>
+-- Pseudo-code for gap insertion using boundary propagation
+
+Gap-Insert(Node, Min, Max) -> (Node, Key) {
+  if (Gaps > 0):
+    if (Node Is Leaf):
+      Key = Any In Range (Min, Max)
+      Return (Node(Left: Leaf, Key: Key, Right: Leaf, Size: 1), Key)
+    else:
+      (New-Left,  Left-Inserted-Key)  = Gap-Insert(Node.Left,  Min, Node.Key)
+      (New-Right, Right-Inserted-Key) = Gap-Insert(Node.Right, Node.Key, Max)
+
+      if (Left-Inserted-Key):
+        Node.Size = New-Left.Size + 1 + Node.Right.Size
+        Node.Left = New-Left;
+      else:
+        Node.Size = Node.Left.Size + 1 + New-Right.Size
+        Node.Right = New-Right;
+      
+      Return (Node, Key)
+  else:
+    Return (Node, Key)
+
+  where
+    Gaps = Open-Interval-Size(Min, Max) - Node.Size 
+}
+
+</code></pre>
+        <p>
+          In pseudo-code presented above, insertion is attempted first to the <i>left</i>, then if that fails, to the <i>right</i>. 
+          This new code structure makes sure that <i>gaps</i> are computed only once per node, for both leaf nodes and regular nodes. Boundary propagation rules are applied when passing new values for <i>Min</i> and <i>Max</i> in recursive calls.
+
+          The code is structured assuming <i>lazy evaluation</i> is supported. If lazy evaluation is not available, regular conditional statements can be used. Using lazy evaluation makes for a much more graceful solution in this case, so it was preferred. 
+        </p>
+        <!-- Haskell implementation -->
+        <pre>
+          <code>
+tr_gap_insert :: (Enum a, Eq a, RandomGen g) => g -> Tree a -> a -> a -> (g, Tree a, Maybe a)
+tr_gap_insert g tr min max
+  | space > 0 = 
+      case tr of
+        E ->
+          let 
+            k = middleEnum min max
+            in (g, (T E k E 1), Just k)
+        T l k r _ -> 
+          let
+            ns = tr_size(nl) + 1 + tr_size(nr)
+            (eg, nl, nr, ik) = 
+              let
+                (bias, ng) = random g
+                (lg, li, lik) = (tr_gap_insert ng l (min) (k))
+                (rg, ri, rik) = (tr_gap_insert ng r (k) (max))
+                left = (bias && isJust lik) || (not bias && isNothing rik)
+              in
+                if(left)
+                  then (lg, li, r, lik) 
+                  else (rg, l, ri, rik)
+            in (eg, (T nl k nr ns), ik)
+  | otherwise = (g, tr, Nothing)
+  where
+    space = (enumsBetween min max) - tr_size(tr)
+
+</code></pre>
+
+This is C implementation of gap insertion you can find the complete source code in files rbst.h and rbst.c.
+
+<pre><code>
+From file: rbst.c (<a href="rbst.html">view</a>)
+
+int rbst_gap_insert(struct RBST* tree, void* value)
+{
+  assert(tree);
+  assert(!tree->write_lock);
+  
+  // initial boundaries
+  int min = tree->min;
+  int max = tree->max;
+
+  // check if tree has any gaps at all
+  if((keys_between(min, max) - count(tree->root)) == 0)
+  {
+    return 0;
+  }
+  
+  // handle special case when root is NULL
+  if(tree->root == NULL)
+  {
+    int key = middle(min, max);
+    tree->root = create_node(key, value);
+    return key;
+  }
+
+  // find any node adjacent to a gap
+  // store node at "it" and gap boundaries in "min", "max"
+  int dir;
+  struct RBSTNode* it = tree->root;
+  for(;;) {
+    int bias = rnd_bool();
+    int gaps_left = keys_between(min, it->key) - count(it->links[0]);
+    int gaps_right = keys_between(it->key, max) - count(it->links[1]);
+
+    // select any branch having gaps, select randomly if both available
+    dir = (!bias && !(gaps_left > 0)) || (bias && (gaps_right > 0));
+
+    // apply boundary propagation rules
+    if(!dir) 
+      max = it->key; 
+    else
+      min = it->key;
+
+    // increment actual size, since we know gap is available somewhere
+    // and insertion is guaranteed to succeed along this path
+    it->count++;
+
+    // check if current node has open link on the side of gap
+    if(it->links[dir] == NULL)
+      break;
+
+    // continue along branch where gaps are
+    it = it->links[dir];
+  }
+
+  // select any key from the gap and create node there
+  int key = middle(min, max);
+  it->links[dir] = create_node(key, value);
+
+  return key;
+}
+          </code>
+        </pre>
       <!-- Okey, just be precise, define unique, what are we looking for etc. in terms of sets. Then define data structures briefly and show they normal form. Then show the modified form. That's all.  -->
 
       
