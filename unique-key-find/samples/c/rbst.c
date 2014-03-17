@@ -46,8 +46,6 @@ int count(const struct RBSTNode* const node)
 
 void apply_for_each(struct RBST* rbst, void (*f)(struct RBSTNode*), int order)
 {
-  rbst->write_lock = true;
-
   if(!rbst->root)
     return;
 
@@ -85,8 +83,6 @@ void apply_for_each(struct RBST* rbst, void (*f)(struct RBSTNode*), int order)
       stack[++sp] = next;
     }
   } while(sp > -1); // until stack is empty
-
-  rbst->write_lock = false;
 }
 
 struct RBSTNode* create_node(int key, void* value)
@@ -111,12 +107,8 @@ struct RBST* rbst_create(int min, int max)
   tree->min = min;
   tree->max = max;
   tree->root = NULL;
-  
   // maximum expected tree depth (used to allocate stack)
   tree->MAX_DEPTH = ceil(MAX_DEPTH_FACTOR*(log(max-min)/log(2)));
-  
-  // used to lock tree changes during iteration
-  tree->write_lock = false;
   return tree;
 }
 
@@ -131,8 +123,8 @@ void rbst_free(struct RBST* rbst)
 int rbst_gap_insert(struct RBST* tree, void* value)
 {
   assert(tree);
-  assert(!tree->write_lock);
 
+  // initial boundaries
   int min = tree->min;
   int max = tree->max;
 
@@ -205,7 +197,6 @@ void* rbst_find(const struct RBST* const tree, int key)
 void* rbst_remove(struct RBST* tree, int key)
 {
   assert(tree);
-  assert(!tree->write_lock);
 
   int depth_count = 0;
 
@@ -270,7 +261,7 @@ void* rbst_remove(struct RBST* tree, int key)
   if(hard_case)
   {
     target->key = stack[sp]->key;
-    target->value = stack[sp]->value; 
+    target->value = stack[sp]->value;
   }
 
   // delete whatever is at the top
@@ -288,16 +279,12 @@ void* rbst_remove(struct RBST* tree, int key)
 
 void rbst_for_each(struct RBST* rbst, void (*f)(int, void*))
 {
-  rbst->write_lock = true;
-
   void pair_apply(struct RBSTNode* node)
   {
     f(node->key, node->value);
   }
 
   rbst_inord_apply(rbst, pair_apply);
-
-  rbst->write_lock = false;
 }
 
 void rbst_preord_apply(struct RBST* rbst, void (*f)(struct RBSTNode*))
