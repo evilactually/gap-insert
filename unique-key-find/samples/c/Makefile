@@ -27,7 +27,7 @@ ifeq ($(FAIL_ON_WARNINGS), True)
 	WARNINGS_OPTION+=-Werror
 endif
 
-CFLAGS = $(WARNINGS_OPTION) $(INCLUDES) -g -std=c99
+CFLAGS = $(WARNINGS_OPTION) $(INCLUDES) -g -std=gnu99
 CC=gcc
 
 $(TESTS):
