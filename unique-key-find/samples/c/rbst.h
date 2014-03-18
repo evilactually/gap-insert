@@ -8,7 +8,6 @@ struct RBST {
   int min;
   int max;
   int MAX_DEPTH;
-  bool write_lock;
 };
 
 struct RBSTNode {
