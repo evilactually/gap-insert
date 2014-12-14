@@ -19,7 +19,7 @@ static inline void cache_reset(struct UniqueMap* map)
 
 struct UniqueMap* create_unique_map(int min, int max)
 {
-  struct UniqueMap* new_map = NEW(struct UniqueMap);
+  struct UniqueMap* new_map = new(struct UniqueMap);
   new_map->rbst = rbst_create(min, max);
   new_map->cached_key = min;
   return new_map;

@@ -87,7 +87,7 @@ void apply_for_each(struct RBST* rbst, void (*f)(struct RBSTNode*), int order)
 
 struct RBSTNode* create_node(int key, void* value)
 {
-  struct RBSTNode* node = NEW(struct RBSTNode);
+  struct RBSTNode* node = new(struct RBSTNode);
   node->links[0] = NULL;
   node->links[1] = NULL;
   node->value = value;
@@ -103,7 +103,7 @@ void remove_node(struct RBSTNode* node)
 
 struct RBST* rbst_create(int min, int max)
 {
-  struct RBST* tree = NEW(struct RBST);
+  struct RBST* tree = new(struct RBST);
   tree->min = min;
   tree->max = max;
   tree->root = NULL;
