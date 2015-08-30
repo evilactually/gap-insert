@@ -14,14 +14,14 @@ struct RBSTNode {
   int key;
   void* value;
   struct RBSTNode* links[2];
-  int count;
+  unsigned int count;
 };
 
 struct RBST* rbst_create(int min, int max);
 
 void rbst_free(struct RBST* rbst);
 
-int rbst_gap_insert(struct RBST* tree, void* value);
+int rbst_gap_insert(struct RBST* tree, void* value, int* key);
 
 void* rbst_find(const struct RBST* const tree, int key);
 

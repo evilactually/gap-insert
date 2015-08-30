@@ -8,6 +8,10 @@
 // allowable deviation from log N depth (used to allocate stack) 
 #define MAX_DEPTH_FACTOR 1.2
 
+#define NEGATIVE(x) (~(x)+1)
+
+// INT_MAX-INT_MIN = UINT_MAX
+
 /* helper functions */
 
 int rnd_bool()
@@ -16,28 +20,23 @@ int rnd_bool()
   return (base_random & (1)) > 0;    /* is odd? */
 }
 
-int middle(int a, int b)
+int middle(int a, int b)           // abs(a) < abs(b) => b - a > 0
 {
-  int difference = b - a;
-  assert(abs(difference) > 1); 
-  return (a + (b - a) / 2);
+  unsigned int difference = b - a; // has to be unsigned
+                                   // since result is potentialy UINT_MAX number of a = INT_MIN and b = INT_MAX
+  return (a + (difference >> 1));  // "divide" by 2 and offset by a
 }
 
-int key_distance (int a, int b)
-{
-  return abs(b - a);
-}
-
-int keys_between(int a, int b)
+unsigned int keys_between(int a, int b)
 {
   if(a == b) return 0;
-  return key_distance(a, b) - 1;
-}
+  return  (b - a) - 1; // abs(a) < abs(b) => b - a > 0
+}                      // Maximum UINT_MAX-1
 
-int count(const struct RBSTNode* const node)
+unsigned int count(const struct RBSTNode* const node)
 {
   if(!node) return 0;
-  return node->count;
+  return node->count;  // Maximum UINT_MAX-1, i.e keys between min and max
 }
 
 #define IN_ORDER   0x01
@@ -120,7 +119,7 @@ void rbst_free(struct RBST* rbst)
 
 /* Find a gap and insert value there returning it's key, O(log N) time
  * Return 0 if no gap was available, constant time */
-int rbst_gap_insert(struct RBST* tree, void* value)
+int rbst_gap_insert(struct RBST* tree, void* value, int* key)
 {
   assert(tree);
 
@@ -137,9 +136,9 @@ int rbst_gap_insert(struct RBST* tree, void* value)
   // handle special case when root is NULL
   if(tree->root == NULL)
   {
-    int key = middle(min, max);
-    tree->root = create_node(key, value);
-    return key;
+    *key = middle(min, max);
+    tree->root = create_node(*key, value);
+    return 1;
   }
 
   // find any node adjacent to a gap
@@ -173,10 +172,10 @@ int rbst_gap_insert(struct RBST* tree, void* value)
   }
 
   // select any key from the gap and create node there
-  int key = middle(min, max);
-  it->links[dir] = create_node(key, value);
+  *key = middle(min, max);
+  it->links[dir] = create_node(*key, value);
 
-  return key;
+  return 1;
 }
 
 void* rbst_find(const struct RBST* const tree, int key)
@@ -194,6 +193,11 @@ void* rbst_find(const struct RBST* const tree, int key)
   return NULL;
 }
 
+struct stack_node_t {
+  void *value;
+  struct stack_node_t* next;
+};
+
 void* rbst_remove(struct RBST* tree, int key)
 {
   assert(tree);
@@ -204,6 +208,7 @@ void* rbst_remove(struct RBST* tree, int key)
   // since we don't know in advance if key is in the tree
   struct RBSTNode* stack[tree->MAX_DEPTH];
   int sp = 0;
+  void** stack_head = NULL;
 
   struct RBSTNode* target;
   
@@ -213,13 +218,26 @@ void* rbst_remove(struct RBST* tree, int key)
     
   stack[0] = tree->root;
 
+  stack_head = alloca(sizeof(void*)*2);
+  *stack_head = tree->root;
+  *(stack_head+1) = NULL;
+
   // find node to be deleted, store it at the top of the stack
   while(stack[sp] != NULL) {
-    assert(++depth_count <= tree->MAX_DEPTH);
+    
+
+
     if(stack[sp]->key == key)
       break;
+
     struct RBSTNode* next = stack[sp]->links[key > stack[sp]->key];
     stack[++sp] = next;
+
+    void** new_stack_head = alloca(sizeof(void*)*2);
+    *new_stack_head = next;
+    *(new_stack_head+1) = stack_head;
+    stack_head = new_stack_head;
+    assert(next->key == ((struct RBSTNode*)stack_head)->key);
   }
 
   // nothing to remove, key not found

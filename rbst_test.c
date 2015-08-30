@@ -42,8 +42,9 @@ void free_stdtree()
 
 void fill_up_partial(struct RBST* tree, float fraction, void* value)
 {
+  int k;
   while(rbst_count(tree) < (int)(((tree->max-tree->min)-1)*fraction)) {
-    rbst_gap_insert(tree, value);
+    rbst_gap_insert(tree, value, &k);
   }
 }
 
@@ -64,12 +65,12 @@ TEST_GROUP(RBST);
 
 TEST_SETUP(RBST)
 {
-  init_stdtree();
+
 }
 
 TEST_TEAR_DOWN(RBST)
 {
-  free_stdtree();
+  
 };
 
 // When only one gap available, it is chosen.
@@ -77,6 +78,7 @@ TEST_TEAR_DOWN(RBST)
 // 1 - signifies right, 0 left
 TEST(RBST, DirectionSelection)
 {
+
   // this boolean function is used inside gap insert implementation 
   #define DIRECTION(bias, gaps_left, gaps_right) (!bias && !(gaps_left > 0)) || (bias && (gaps_right > 0))
 
@@ -88,12 +90,13 @@ TEST(RBST, DirectionSelection)
   TEST_ASSERT_EQUAL_INT(DIRECTION(1,0,1),1);
   TEST_ASSERT_EQUAL_INT(DIRECTION(1,1,0),0);
   
-  // two gaps, braking the tie
+  // two gaps, breaking the tie
   TEST_ASSERT_EQUAL_INT(DIRECTION(0,1,1),0);
   TEST_ASSERT_EQUAL_INT(DIRECTION(1,1,1),1);
 
   // this case shouldn't happen, but it's defined
   TEST_ASSERT_EQUAL_INT(DIRECTION(1,0,0),0); 
+
 }
 
 TEST(RBST, TreeCreate)
@@ -142,8 +145,6 @@ TEST(RBST, RemoveHardRoot)
   }
 
   verify_order(tree);
-
-  rbst_free(tree);
 }
 
 // case #2 - remove hard right sub-tree
@@ -192,8 +193,6 @@ TEST(RBST, RemoveHardChildRight)
   }
 
   verify_order(tree);
-
-  rbst_free(tree);
 }
 
 // case #3 - remove hard left sub-tree 
@@ -243,8 +242,6 @@ TEST(RBST, RemoveHardChildLeft)
   }
 
   verify_order(tree);
-
-  rbst_free(tree);
 }
 
 TEST(RBST, GapInsertion)
@@ -267,7 +264,7 @@ TEST(RBST, GapInsertion)
     TEST_ASSERT_EQUAL_INT(size, rbst_count(tree));
 
     values[i] = i*1000;
-    k = rbst_gap_insert(tree, &values[i]);
+    rbst_gap_insert(tree, &values[i], &k);
 
     gaps--;
     size++;
@@ -282,8 +279,6 @@ TEST(RBST, GapInsertion)
 
     i++;
   }
-
-  rbst_free(tree);
 }
 
 TEST(RBST, ForEach)
@@ -302,12 +297,12 @@ TEST(RBST, ForEach)
   }
 
   rbst_for_each(tree, test_pair);
-
-  rbst_free(tree);
 }
 
 TEST(RBST, InOrdTraversal)
 {
+  init_stdtree();
+
   int i = 0;
   void verify_node(struct RBSTNode* node)
   {
@@ -315,10 +310,14 @@ TEST(RBST, InOrdTraversal)
   }
 
   rbst_inord_apply(stdtree, verify_node);
+
+  free_stdtree();
 }
 
 TEST(RBST, PostOrdTraversal)
 {
+  init_stdtree();
+
   int i = 0;
   void verify_node(struct RBSTNode* node)
   {
@@ -326,10 +325,14 @@ TEST(RBST, PostOrdTraversal)
   }
 
   rbst_postord_apply(stdtree, verify_node);
+
+  free_stdtree();
 }
 
 TEST(RBST, PreOrdTraversal)
 {
+  init_stdtree();
+
   int i = 0;
   void verify_node(struct RBSTNode* node)
   {
@@ -337,17 +340,101 @@ TEST(RBST, PreOrdTraversal)
   }
 
   rbst_preord_apply(stdtree, verify_node);
+
+  free_stdtree();
+}
+
+#define NEGATIVE(x) (~(x)+1)
+
+
+#include <limits.h>
+TEST(RBST, IntegerLimits)
+{
+  int a = 5;
+  int b = 8;
+  //unsigned int difference = (unsigned int)b + NEGATIVE((unsigned int)a);
+  unsigned int difference = (unsigned int)b + (unsigned int)(-a);
+                                                          // ^
+                                                          // |_ flip sign before casting to unsigned
+
+  printf("======%u\n", difference);
+  printf("%u %u\n", 1231 >> 1, 1231 / 2);
+
+  // for (int i = 0; i < 50000; ++i)
+  // {
+  //    TEST_ASSERT_EQUAL_INT(i >> 1, i/2);
+  // }
+
+
+
+  //printf("******%u\n", keys_between(2,3));
+
+  struct RBST* tree = rbst_create(INT_MIN, INT_MAX);
+
+  unsigned long inserted_count = 0;
+  
+  const unsigned long expected_inserted_count = (unsigned long)INT_MAX + NEGATIVE((unsigned long)INT_MIN) + 1;
+  printf("%lu\n", expected_inserted_count);
+
+  printf("Integer limits: %d %d\n", INT_MIN, INT_MAX);
+  printf("Number of keys possible: %lu\n", expected_inserted_count);
+
+  int key = 0;
+  while(rbst_gap_insert(tree, &key, &key) != 0) {
+    printf("%d\n", key);
+    inserted_count++;
+  }
+
+  // for (int i = INT_MIN; i <= INT_MAX; ++i)
+  // {
+  //   //rbst_gap_insert(tree);
+  //   printf("%d\n", i);
+  // }
+
+  rbst_free(tree);
+}
+
+#include <limits.h>
+int middle(int a, int b);
+
+TEST(RBST, Middle) {
+  TEST_ASSERT_EQUAL_UINT((unsigned int)INT_MAX-(unsigned int)INT_MIN,UINT_MAX);
+  TEST_ASSERT_EQUAL_INT(middle(INT_MIN, INT_MAX), -1);
+
+  // Explanation:
+  // 2147483647 -(-2147483648) = 4294967295
+  // INT_MAX      INT_MIN         UINT_MAX 
+  // 4294967295 >> 1 = 2147483647
+  // (-2147483648) + 2147483647 = -1
+
+  TEST_ASSERT_EQUAL_INT(middle(1, 5), 3);
+  TEST_ASSERT_EQUAL_INT(middle(1, 4), 2);
+  TEST_ASSERT_EQUAL_INT(middle(-5, -1), -3);
+  TEST_ASSERT_EQUAL_INT(middle(-4, -1), -3);
+  TEST_ASSERT_EQUAL_INT(middle(-8, -1), -5);
+
+}
+
+unsigned int keys_between(int a, int b);
+
+TEST(RBST, KeysBetween) {
+  TEST_ASSERT_EQUAL_INT(14, keys_between(-8,7));
+  TEST_ASSERT_EQUAL_INT(3, keys_between(1,5));
+  TEST_ASSERT_EQUAL_UINT(UINT_MAX-1, keys_between(INT_MIN,INT_MAX));
 }
 
 TEST_GROUP_RUNNER(RBST)
 {
-  RUN_TEST_CASE(RBST, DirectionSelection);
-  RUN_TEST_CASE(RBST, GapInsertion);
+  // RUN_TEST_CASE(RBST, DirectionSelection);
+  // RUN_TEST_CASE(RBST, GapInsertion);
   RUN_TEST_CASE(RBST, RemoveHardRoot);
   RUN_TEST_CASE(RBST, RemoveHardChildLeft);
   RUN_TEST_CASE(RBST, RemoveHardChildRight);
-  RUN_TEST_CASE(RBST, ForEach);
-  RUN_TEST_CASE(RBST, InOrdTraversal);
-  RUN_TEST_CASE(RBST, PostOrdTraversal);
-  RUN_TEST_CASE(RBST, PreOrdTraversal);
+  // RUN_TEST_CASE(RBST, ForEach);
+  // RUN_TEST_CASE(RBST, InOrdTraversal);
+  // RUN_TEST_CASE(RBST, PostOrdTraversal);
+  // RUN_TEST_CASE(RBST, PreOrdTraversal);
+  // RUN_TEST_CASE(RBST, IntegerLimits);
+  // RUN_TEST_CASE(RBST, Middle);
+  RUN_TEST_CASE(RBST, KeysBetween);
 }

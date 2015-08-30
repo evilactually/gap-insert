@@ -33,8 +33,8 @@ void destroy_unique_map(struct UniqueMap* map)
 
 int map_put_unique(struct UniqueMap* map, void* value)
 {
-  int key = rbst_gap_insert(map->rbst, value);
-  if(key > 0)
+  int key = 0;
+  if(rbst_gap_insert(map->rbst, value, &key) > 0)
   {
     map->cached_key = key;
     map->cached_value = value;
